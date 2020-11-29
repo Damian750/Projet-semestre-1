@@ -92,9 +92,10 @@ def evolution():
      
  #Anomalies   
     
-V=['temp','noise','lum','co2','humidity']
+
 
 def anomalie_arret():
+    V=['temp','noise','lum','co2','humidity']
     capteur_defiant=0
     for variable in V:
         
