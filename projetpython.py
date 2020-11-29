@@ -28,7 +28,24 @@ def moyenne():   #on calcule la moyenne journalière
     
     plt.title('Moyenne journalière')
     plt.show()
+  
+def ecart_type():
+    capteur=int(input("entrer un id du capteur:"))
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('entrer date début (exemple 2020-09):')
+    f=input('entrer date fin:')
+
+
+
+    fig, ax = plt.subplots(figsize=(8,5))
+    ax2 = ax.twinx()
     
+    ax.plot(df[df["id"]==capteur][variable][d:f].resample('D').mean().index,df[df['id']==capteur][variable][d:f].resample('D').mean(),color='r')
+    
+    ax2.bar(df[df["id"]==capteur][variable][d:f].resample('D').std().index,df[df['id']==capteur][variable][d:f].resample('D').std(),color='b',alpha=0.2)
+
+
+    plt.show()
     
     
 def humidex():
