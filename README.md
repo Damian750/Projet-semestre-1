@@ -3,7 +3,7 @@ Présentation du projet python
 
 La fonction ```evolution()``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction.
 
-```code
+```java
 def evolution():
         variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
         d=input('entrer date début (exemple 2020-09):')
