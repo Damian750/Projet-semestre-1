@@ -1,0 +1,30 @@
+def min(colonne):
+    
+    date1=input('date de début=')
+    date2=input('date de fin=')
+    A=df['colonne'].loc['date1':'date2']
+    mini=A.min()
+    plt.title(mini)
+    A.plot
+    plt.show()
+   
+    
+    
+def max(colonne):
+    date1=input('date de début en format;2019-08-11 11:31:42+02:00=')
+    date2=input('date de fin en format;2019-08-11 11:31:42+02:00=')
+    A=df.loc['date1':'date2',"colonne"]
+    maxi=A.max()
+    plt.title(max)
+    A.plot
+    plt.show()
+    
+    
+def moyenne(colonne):
+    date1=input('date de début en format;2019-08-11 11:31:42+02:00=')
+    date2=input('date de fin en format;2019-08-11 11:31:42+02:00=')
+    A=df.loc['date1':'date2',"colonne"]
+    moy=A.mean()
+    plt.title(moy)
+    A.plot
+    plt.show()
