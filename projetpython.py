@@ -5,19 +5,6 @@ import matplotlib.pyplot as plt
 
 df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
 
-##Matplotlib
-plt.subplot(221)
-df[df['id']==1]['temp'].plot(kind="b")
-plt.subplot(222)
-df[df['id']==2]['temp'].plot()
-plt.subplot(223)
-df[df['id']==3]['temp'].plot()
-plt.subplot(224)
-df[df['id']==4]['temp'].plot()
-plt.subplot(225)
-df[df['id']==5]['temp'].plot()
-plt.subplot(226)
-df[df['id']==6]['temp'].plot()
 
 
 #HUMIDEX (il 'sagit simplement de faire des opérations entre les colonnes du tableau pour calculer l'humidex par sa formule)
