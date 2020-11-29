@@ -22,10 +22,11 @@ Après avoir observé à l'œil nu certaines anomalies sur les courbes tracées 
 # Humidex :
 L’humidex est une formule combinant température et humidité, ainsi pour la trouver nous avons effectué des opérations entre les diverses colonnes de notre tableau. Pour plus de lisibilité dans notre programme nous avons créé deux données intermédiaires ; la température de rosée et alpha dépendant également de la température et de l’humidité. Puis grâce à ces valeurs nous avons pu calculer l’humidex pour l’ensemble des dates.On s’est donc retrouvé avec une ligne de code nous permettant d’afficher le tableau de données avec une nouvelle colonne contenant l’humidex or  Enfin nous avons codé une fonction nous demandant l’intervalle de temps que l’on voulait étudié afin de réduire notre tableau à la colonne de l’humidex dans cette intervalle de temps puis enfin de tracer la courbe de l’humidex en fonction du temps
 
-# Valeur statistiques :
+# Valeur statistique :
 On cherche a calculer min, max, écart-type, moyenne*, variance, médiane. Pour cette partie nous nous sommes aidés des fonctions pandas déjà existantes. En utilisant les fonctions df.mean, df.max, df.min, df.median… on a les données souhaitées. Il nous restait seulement a les appliquer dans les intervalles souhaités et a l’afficher sur les courbes, pour ce faire on utilise matplotlib avec la fonction pyplot.text
-Cependant pour cette question nous avons eu deux compréhensions différentes du sujet, l'un pensant qu'il fallait seulement tracer la coure en y ajoutant la valeur statistique calculée sur cet intervale 
+Cependant pour cette question nous avons eu deux compréhensions différentes du sujet, l'un pensant qu'il fallait seulement tracer la courbe en y ajoutant la valeur statistique calculée sur cet intervale et l'autre qu'il fallait calculer la valeur statistique pour chaque journée et de tracer la courbe d'ecolution sur l'intervale donné.  
 
 # Indice de corrélation:
+
 
 
