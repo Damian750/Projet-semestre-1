@@ -27,6 +27,7 @@ variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'
 ```
 Par soucis de simplification du code on décide pour les prochaines fonctions de ne plus utiliser ces deux bibliothèques. Les données seront intuitivement interprétées. 
 
+--------
 
 On a dévéloppé pour l'instant deux fonctions permettant de détecter:
 -si un capteur s'arrête de fonctionner pendant un temps anormal (plus d'un jour)
