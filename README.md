@@ -3,7 +3,7 @@ Présentation du projet python __Blaszczuk Damian__ et __Gasecki Nicolas__ __Gro
 
 ----
 
-La fonction ```__evolution()__``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction.
+La fonction ```evolution()``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction.
 
 ```java
 def evolution():
