@@ -1,6 +1,8 @@
 # Projet-semestre-1
 Présentation du projet python
 
+----
+
 La fonction ```evolution()``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction.
 
 ```java
@@ -18,11 +20,13 @@ def evolution():
         plt.legend()               
         plt.show()
 ```
-Dans cette première fonction on a crée deux bibliothèques
+Dans cette première fonction on a crée deux bibliothèques. Une bibliothèque 'unites' pour pouvoir assimiler à une variable son unité de mesure puis l'afficher sur l'axe des ordonnées. Une bibliotèque 'variable_dico' pour traduire les noms des variables en français pour l'intitulé du graphique:
 ```java
 unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%' }
 variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
 ```
+Par soucis de simplification du code on décide pour les prochaines fonctions de ne plus utiliser ces deux bibliothèques. Les données seront intuitivement interprétées. 
+
 
 On a dévéloppé pour l'instant deux fonctions permettant de détecter:
 -si un capteur s'arrête de fonctionner pendant un temps anormal (plus d'un jour)
