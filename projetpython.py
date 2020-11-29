@@ -157,3 +157,21 @@ def anomalie_valeur():
     df[df['id']==capteur][variable].plot()
     plt.legend()
     plt.show()
+    
+    
+def occupation():
+    
+    capteur=int(input('choix des capteurs de 1 à 6:'))
+# df[df['id']==capteur]['co2'].plot(label='co2')
+# plt.show()
+            
+    for k in range(len(df[df['id']==capteur].index)-1):
+        while df[df['id']==capteur]['co2'][k]>500:
+            indice=k
+            A=df[df['id']==capteur].index[indice]
+            B=df[df['id']==capteur].index[indice+1]
+                
+            df[df['id']==capteur]['co2'][A._repr_base:B._repr_base].plot(ls=":",lw=5,color='r')   
+    df[df['id']==capteur]['co2'].plot(label='co2')       
+    plt.text('Hello World !')
+    plt.show()
