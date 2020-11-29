@@ -18,6 +18,11 @@ def evolution():
         plt.legend()               
         plt.show()
 ```
+Dans cette première fonction on a crée deux bibliothèques
+```java
+unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%' }
+variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
+```
 
 On a dévéloppé pour l'instant deux fonctions permettant de détecter:
 -si un capteur s'arrête de fonctionner pendant un temps anormal (plus d'un jour)
