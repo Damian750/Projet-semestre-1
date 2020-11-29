@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
 
 
-def min_max(): #on calcule les min et max journaliers
+'''def min_max(): #on calcule les min et max journaliers
     
     variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
     d=input('date debut:')
@@ -17,7 +17,7 @@ def min_max(): #on calcule les min et max journaliers
     
     plt.title('min et max journaliers')
     plt.show()
-
+'''
     
 def moyenne():   #on calcule la moyenne journalière
     
