@@ -20,10 +20,18 @@ plt.subplot(226)
 df[df['id']==6]['temp'].plot()
 
 
-#HUMIDEX (il 'sagit simplement de faire des opérations entre les colonnes du tableau pour calculer l'humidex par sa formule)
-import numpy as np
-df['alpha']=(17.27*df['temp']/(237.7+df['temp'])+np.log(df['humidity']))
+def humidex():
 
-df['temp_rosée']=((237.7*df['alpha'])/(17.27-df['alpha']))
+    date1=input('date de début en format;2019-08-11 11:31:42+02:00=')
+    date2=input('date de fin en format;2019-08-11 11:31:42+02:00=')
 
-df['humidex']= df['temp']+0.555*(6.11*np.exp(5417.7530*((1/273.16)-1/(273.15+df['temp_rosée'])))-10)
+    df['alpha']=(17.27*df['temp']/(237.7+df['temp'])+np.log(df['humidity']))
+
+    df['temp_rosée']=((237.7*df['alpha'])/(17.27-df['alpha']))
+
+    df['humidex']= df['temp']+0.555*(6.11*np.exp(5417.7530*((1/273.16)-1/(273.15+df['temp_rosée'])))-10)
+
+    A=df.loc['date1':'date2',"humidex"]
+
+    A.plot
+    plt.show
