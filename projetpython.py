@@ -5,7 +5,12 @@ import matplotlib.pyplot as plt
 
 df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
 
-
+def min_max():
+     d=input('date debut:')
+     f=input('date fin:')
+     df.loc[d:f,'temp'].resample('D').min().plot(label='min')
+     df.loc[d:f,'temp'].resample('D').max().plot(label='max')
+     plt.show()
 
 def humidex():
     d=input('date debut:')
