@@ -30,7 +30,38 @@ Par soucis de simplification du code on décide pour les prochaines fonctions de
 --------
 
 On a dévéloppé pour l'instant deux fonctions permettant de détecter:
--si un capteur s'arrête de fonctionner pendant un temps anormal (plus d'un jour)
--des anomalies de valeurs en calculant leur différence avec la moyenne journalière et comparant cette différence à l'écart-type
+-si un capteur s'arrête de fonctionner pendant un temps anormal (plus d'un jour)```anomalie_arret()```
+-des anomalies de valeurs en calculant leur différence avec la moyenne journalière et comparant cette différence à l'écart-type```anomalie_valeur```
 
-
+```java
+def anomalie_arret():
+    V=['temp','noise','lum','co2','humidity']
+    capteur_defiant=0
+    for variable in V:
+        
+        
+        for capteur in range(1,7):
+            
+            for k in range(len(df[df['id']==capteur].index)-1):
+                
+                T = df[df['id']==capteur].index[k+1] - df[df['id']==capteur].index[k] #on calcule la différence de temps écoulé entre deux prises de mesures. Il s'agit d'un Timedelta.
+                
+                if T.components.days!=0:   #si le temps entre deux mesures dépasse un jour on considère qu'il s'agit d'une anomalie d'interruption du capteur.
+                    
+                    indice=k
+                    A=df[df['id']==capteur].index[indice]  # on relève les caractétistiques des deux valeurs entre lesquelles le temps écoulé dépasse un jour. Il s'agit d'un Timestamp
+                    B=df[df['id']==capteur].index[indice+1]
+                    
+                    capteur_defiant=capteur
+                    
+                    df[df['id']==capteur][variable][A._repr_base:B._repr_base].plot(label=f'Arrêt du capteur {capteur}',ls=":",lw=5,color='r')   
+                    #on représente alors toutes les valeurs qui ont présentées cette anomalie.
+                    
+            if capteur_defiant==capteur:
+                
+                df[df['id']==capteur_defiant][variable].plot(label=f'Capteur {capteur_defiant}')
+                plt.title(f'Evolution de la variable "{variable}" en fonction du temps')
+                plt.legend()
+                plt.show()
+    print(f'Le capteur qui présente une anomalie d arrêt est le capteur "{capteur_defiant}"')
+```
