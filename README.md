@@ -18,7 +18,7 @@ def evolution():
         plt.legend()               
         plt.show()
 ```
-
+`print()`
 On a dévéloppé pour l'instant deux fonctions permettant de détecter:
 -si un capteur s'arrête de fonctionner pendant un temps anormal (plus d'un jour)
 -des anomalies de valeurs en calculant leur différence avec la moyenne journalière et comparant cette différence à l'écart-type
