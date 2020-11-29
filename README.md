@@ -31,7 +31,7 @@ Par soucis de simplification du code on décide pour les prochaines fonctions de
 
 On a dévéloppé pour l'instant deux fonctions permettant de détecter:
 -si un capteur s'arrête de fonctionner pendant un temps anormal (plus d'un jour)```anomalie_arret()```
--des anomalies de valeurs en calculant leur différence avec la moyenne journalière et comparant cette différence à l'écart-type```anomalie_valeur```
+-des anomalies de valeurs en calculant leur différence avec la moyenne journalière et comparant cette différence à l'écart-type```anomalie_valeur()```
 
 ```java
 def anomalie_arret():
