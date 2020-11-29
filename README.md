@@ -1,5 +1,5 @@
 # Projet-semestre-1
-Présentation du projet python
+Présentation du projet python __Blaszczuk Damian__ et __Gasecki Nicolas__ __Groupe 23__
 
 ----
 
