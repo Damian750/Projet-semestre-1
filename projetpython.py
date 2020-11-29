@@ -72,3 +72,32 @@ def evolution():
         plt.ylabel(unites[f'{variable}'])
         plt.legend()               
         plt.show()
+        
+     
+ #Anomalies   
+    
+def anomalie_arret():
+    capteur_defiant=0
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    for capteur in range(1,7):
+        
+        for k in range(len(df[df['id']==capteur].index)-1):
+            
+            T=df[df['id']==capteur].index[k+1]-df[df['id']==capteur].index[k] #on calcule la différence de temps écoulé entre deux prises de mesures. Il s'agit d'un Timedelta.
+            
+            if T.components.days!=0:   #si le temps entre deux mesures dépasse un jour on considère qu'il s'agit d'une anomalie d'interruption du capteur.
+                
+                indice=k
+                A=df[df['id']==capteur].index[indice]  # on relève les caractétistiques des deux valeurs entre lesquelles le temps écoulé dépasse un jour. Il s'agit d'un Timestamp
+                B=df[df['id']==capteur].index[indice+1]
+                
+                capteur_defiant=capteur
+                
+                df[df['id']==capteur][variable][A._repr_base:B._repr_base].plot(label=f'Arrêt du capteur {capteur}',ls=":",lw=5,color='r')   
+                #on représente alors toutes les valeurs qui ont présentées cette anomalie.
+                
+        if capteur_defiant==capteur:
+            df[df['id']==capteur_defiant][variable].plot(label=f'Capteur {capteur_defiant}')
+            plt.title(f'Evolution de la variable "{variable}" en fonction du temps')
+            plt.legend()
+            plt.show()
