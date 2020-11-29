@@ -107,3 +107,37 @@ def anomalie_arret():
                 plt.legend()
                 plt.show()
     print(f'Le capteur qui présente une anomalie d arrêt est le capteur "{capteur_defiant}"')
+    
+    
+    
+def anomalie_valeur():
+    
+    capteur=int(input("entrer un id du capteur:"))
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+        
+    for k in range(len(df[df['id']==capteur].index)-1):  #on parcourt les valeurs du tableau du capteur correspondant.
+        
+        D=np.abs(df[df['id']==capteur][variable][k]-df[df['id']==capteur][variable].resample('D').mean()[df[df['id']==capteur][variable].index[k]._date_repr])
+       
+        # D est la différence entre la valeur d'une variable (d'indice k) pour un capteur donné et la valeur moyenne de cette variable sur la journée.
+        
+        s=df[df['id']==capteur][variable].std()
+        
+        # s est l'écart-type
+        # Une valeur présentant un écart à la moyenne inférieur à l'écart type est banale, compris entre une et deux fois l'écart type est modérément courante, compris entre deux et trois fois l'écart type commence a être remarquable,compris entre trois et quatre fois l'écart type est exceptionnelle, supérieur à quatre fois l'écart type est historique et très rare.
+        
+        if D>=s and D<2*s:
+                        df[df['id']==capteur][variable][k:k+1].plot(label='',lw=2,color='g',marker='o')
+        
+        if D>=2*s and D<3*s:
+                        df[df['id']==capteur][variable][k:k+1].plot(label='',lw=2,color='r',marker='o')
+        
+        if D>=3*s and D<4*s:
+                        df[df['id']==capteur][variable][k:k+1].plot(label='anomalie exceptionnelle',lw=2,color='m',marker='o')
+        
+        if D>=4*s:
+                        df[df['id']==capteur][variable][k:k+1].plot(label='anomalie rare',lw=2,color='k',marker='o')
+    
+    df[df['id']==capteur][variable].plot()
+    plt.legend()
+    plt.show()
