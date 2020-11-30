@@ -159,6 +159,7 @@ On a dévéloppé pour l'instant deux fonctions permettant de détecter:
 * si un capteur s'arrête de fonctionner pendant un temps anormal (plus d'un jour). ___```anomalie_arret()```___
 * des anomalies de valeurs en calculant leur différence avec la moyenne journalière et comparant cette différence à l'écart-type. ___```anomalie_valeur()```___
 
+######`Anomalie_Arret()`
 ```javascript
 def anomalie_arret():
     V=['temp','noise','lum','co2','humidity'] # on crée la liste des variables pour pouvoir la parcourir.
@@ -191,3 +192,4 @@ def anomalie_arret():
                 plt.show()
     print(f'Le capteur qui présente une anomalie d arrêt est le capteur "{capteur_defiant}"')
 ```
+######```Anomalie_Valeurs()```
