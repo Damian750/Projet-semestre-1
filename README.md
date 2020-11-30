@@ -16,7 +16,12 @@ df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
 ``` 
 --------------------------------------------------------------------------------
 ## Valeurs statistiques 
-On cherche a calculer min, max, écart-type, moyenne, variance, médiane. Pour cette partie nous nous sommes aidés des fonctions pandas déjà existantes. En utilisant les fonctions df.mean, df.max, df.min, df.median… on a les données souhaitées. Il nous restait seulement a les appliquer dans les intervalles souhaités et a l’afficher sur les courbes, pour ce faire on utilise matplotlib avec la fonction pyplot.text. Cependant pour cette question nous avons eu deux compréhensions différentes du sujet, l'un pensant qu'il fallait seulement tracer la courbe en y ajoutant la valeur statistique calculée sur cet intervale et l'autre qu'il fallait calculer la valeur statistique pour chaque journée et de tracer la courbe d'evolution sur l'intervale donné. Nous avons donc décidé de coder les deux programmes car celles-ci pourraient etre utile pour étudier les données de notre tableau.
+On cherche a calculer min, max, écart-type, moyenne, variance, médiane. Pour cette partie nous nous sommes aidés au début des fonctions pandas déjà existantes. En utilisant les fonctions df.mean, df.max(), df.min(), df.median()…df.describe() on a les données souhaitées. Il nous restait seulement a les appliquer dans les intervalles souhaités et a l’afficher sur les courbes, pour ce faire on utilise matplotlib. 
+Cependant pour cette question nous avons eu deux compréhensions différentes du sujet:
+* l'un pensant qu'il fallait tracer la courbe en y ajoutant la valeur statistique calculée sur cet intervale
+* l'autre qu'il fallait calculer la valeur statistique pour chaque journée et de tracer la courbe d'evolution sur l'intervale donné. Nous avons donc décidé de coder les deux programmes car celles-ci pourraient etre utile pour étudier les données de notre tableau.
+
+* #### Minimum ponctuel sur une plage de donnée et une combinaisons de capteurs choisies par l'utilisateur!
 ```javascript
 def minimum():
     M=[]#on crée la liste des minimums pour chaque capteur sélectioné
