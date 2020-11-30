@@ -13,30 +13,45 @@ unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%'
 variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
 
 
-def min():
+unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%' }
+variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
+
+def minimum():
+    M=[]#on crée la liste des minimums pour chaque capteur sélectioné
     i_mini=0 #on initialise l'indice de la valeur minimale
+    I=[]#on crée la liste des indices des minimums pour chaque capteur sélectioné
+
     variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
     d=input('entrer date début (exemple 2020-09):')
     f=input('entrer date fin:')
-    capteur=int(input("entrer un id du capteur:"))
+    L=[int(el) for el in input('choix des capteurs de 1 à 6 (ex: 1 3 5):').split()]  #on choisit la combinaison de capteurs souhaités.
         
         
+    for capteur in range(len(L)):  #on parcourt la liste des capteurs sélectionnés
         
-    for k in range(len(df[df['id']==capteur][d:f].index)-1):
-        if df[df['id']==capteur][variable][k+1] < df[df['id']==capteur][variable][k]:
-            i_mini=k+1
+        df[df['id']==L[capteur]][variable][d:f].plot(label=f' capteur {L[capteur]}') #on affiche la courbe de la variable sélectionnée
+        
+        Min=df[df['id']==L[capteur]][variable][0] #Initialisation
+        
+        for k in range(len(df[df['id']==L[capteur]][d:f].index)-1):#on parcourt toutes les valeurs de la Serie dans la plage temporelle sélectionnée.
             
-    Minimum=df[df['id']==capteur][variable][i_mini] #on stocke la valeur minimale
+            if df[df['id']==L[capteur]][variable][k+1] < Min: #comparaison des valeurs au minimum en cours.
+                i_mini = k+1 #on stocke l'indice de la valeur minimale en cours.
+                Min = df[df['id']==L[capteur]][variable][k+1] #on actualise la valeur du minimum
+        
+        M.append(Min) #on stocke la valeur minimale du capteur qu'on est en train de parcourir.
+        I.append(i_mini)  #on stocke également son indice
+     
     
-    #on relève les caractétistiques (date précisément indexée sous le format Timestamp) de la valeur minimale et de la valeur qui suit pour pouvoir afficher les points:
-    A=df[df['id']==capteur].index[i_mini-1]           
-    B=df[df['id']==capteur].index[i_mini]
+    Minimum = min(M)   #Ici on s'autorise à utiliser la bibliothèque python pour calculer le minimum de la liste et éviter à faire une boucle for en plus.
+    Indice_du_minimum = I[M.index(Minimum)] #Identification de l'indice correspondant
     
-    df[df['id']==capteur][variable][d:f].plot(label=variable_dico[f'{variable}'],color='b')  #on affiche la courbe de la variable sélectionnée
+    #on relève les caractétistiques (date précisément indexée sous le format Timestamp)de la valeur minimale pour pouvoir afficher le point avec .index:
+    A = df[df['id']==L[M.index(Minimum)]][variable].index[Indice_du_minimum]           
     
-    df[df['id']==capteur][variable][A._repr_base:B._repr_base].plot(label='minimum',marker='o',color='r')
-    #on afficher le point Minimum
-    plt.ylabel(variable_dico[f'{variable}'] + 'en' + unites[f'{variable}'])
+    df[df['id']==L[M.index(Minimum)]][variable][A._repr_base:A._repr_base].plot(label='minimum',marker='o',color='r') #affiche la valeur minimum
+    
+    plt.ylabel(variable_dico[f'{variable}'] + ' en ' + unites[f'{variable}'])
     plt.title(f'Le minimum est de {Minimum} ' + unites[f'{variable}'])
     plt.legend()   
     plt.show()
