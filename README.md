@@ -2,7 +2,7 @@
 Présentation du projet python __Blaszczuk Damian__ et __Gasecki Nicolas__ __Groupe 23__
 
 ### Sujet n°1
---------------------
+--------------------------------------------------------------------------------
 ## Introduction brève du code source
 * ##### Recherche de la méthode de manipulation d’un tableau de données sur python:
 Nous disposions d’un ensemble de données sous la forme d’un tableau csv traduisant l’évolution de différentes caractéristiques d’une pièce (température, humidité, bruit) en fonction du temps. Nous avons d'abord cherché à lire ce format csv sur python, pour ce faire la bibliothèque ```panda``` est la plus adaptée. Une fois ces données importées sur python nous avons commencé à traiter ces données afin de les étudier.
@@ -14,7 +14,11 @@ Nous avons cherché à afficher les courbes des différentes caractéristiques e
 ```javascript
 df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
 ``` 
+--------------------------------------------------------------------------------
 ## Valeurs statistiques 
+On cherche a calculer min, max, écart-type, moyenne, variance, médiane. Pour cette partie nous nous sommes aidés des fonctions pandas déjà existantes. En utilisant les fonctions df.mean, df.max, df.min, df.median… on a les données souhaitées. Il nous restait seulement a les appliquer dans les intervalles souhaités et a l’afficher sur les courbes, pour ce faire on utilise matplotlib avec la fonction pyplot.text. Cependant pour cette question nous avons eu deux compréhensions différentes du sujet, l'un pensant qu'il fallait seulement tracer la courbe en y ajoutant la valeur statistique calculée sur cet intervale et l'autre qu'il fallait calculer la valeur statistique pour chaque journée et de tracer la courbe d'evolution sur l'intervale donné. Nous avons donc décidé de coder les deux programmes car celles-ci pourraient etre utile pour étudier les données de notre tableau.
+
+---------------------------------------------------------------------------------
 ## Affichage de l'évolution des valeurs
 La fonction ```evolution()``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction. L'utilisateur a la liberté de choisir la combinaison de capteurs qu'il souhaite faire afficher.
 
@@ -48,7 +52,7 @@ On a dévéloppé pour l'instant deux fonctions permettant de détecter:
 * si un capteur s'arrête de fonctionner pendant un temps anormal (plus d'un jour). ___```anomalie_arret()```___
 * des anomalies de valeurs en calculant leur différence avec la moyenne journalière et comparant cette différence à l'écart-type. ___```anomalie_valeur()```___
 
-```java
+```javascript
 def anomalie_arret():
     V=['temp','noise','lum','co2','humidity'] # on crée la liste des variables pour pouvoir la parcourir.
     capteur_defiant=0   # on initialise la variable qui va nous permettre d'identifier le capteur défiant.
