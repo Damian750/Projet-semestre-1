@@ -18,6 +18,52 @@ df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
 ## Valeurs statistiques 
 On cherche a calculer min, max, écart-type, moyenne, variance, médiane. Pour cette partie nous nous sommes aidés des fonctions pandas déjà existantes. En utilisant les fonctions df.mean, df.max, df.min, df.median… on a les données souhaitées. Il nous restait seulement a les appliquer dans les intervalles souhaités et a l’afficher sur les courbes, pour ce faire on utilise matplotlib avec la fonction pyplot.text. Cependant pour cette question nous avons eu deux compréhensions différentes du sujet, l'un pensant qu'il fallait seulement tracer la courbe en y ajoutant la valeur statistique calculée sur cet intervale et l'autre qu'il fallait calculer la valeur statistique pour chaque journée et de tracer la courbe d'evolution sur l'intervale donné. Nous avons donc décidé de coder les deux programmes car celles-ci pourraient etre utile pour étudier les données de notre tableau.
 
+```javascript
+def min_max(): #on calcule les min et max journaliers
+    
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('date debut:')
+    f=input('date fin:')
+    
+    df.loc[d:f,variable].resample('D').min().plot(label='min')
+    df.loc[d:f,variable].resample('D').max().plot(label='max')
+    
+    plt.title('min et max journaliers')
+    plt.show()
+```
+```javascript
+def moyenne():   #on calcule la moyenne journalière
+    
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('date debut:')
+    f=input('date fin:')
+    
+    df[variable][d:f].resample('D').mean().plot(label='id=1',ls=':')
+    
+    plt.title('Moyenne journalière')
+    plt.show()
+```
+
+```javascript 
+def ecart_type():
+    capteur=int(input("entrer un id du capteur:"))
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('entrer date début (exemple 2020-09):')
+    f=input('entrer date fin:')
+
+
+
+    fig, ax = plt.subplots(figsize=(8,5))
+    ax2 = ax.twinx()
+    
+    ax.plot(df[df["id"]==capteur][variable][d:f].resample('D').mean().index,df[df['id']==capteur][variable][d:f].resample('D').mean(),color='r')
+    
+    ax2.bar(df[df["id"]==capteur][variable][d:f].resample('D').std().index,df[df['id']==capteur][variable][d:f].resample('D').std(),color='b',alpha=0.2)
+
+
+    plt.show()
+```   
+    
 ---------------------------------------------------------------------------------
 ## Affichage de l'évolution des valeurs
 La fonction ```evolution()``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction. L'utilisateur a la liberté de choisir la combinaison de capteurs qu'il souhaite faire afficher.
