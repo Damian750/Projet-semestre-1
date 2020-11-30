@@ -151,7 +151,7 @@ def variance():
     ax1.plot(df[df["id"]==capteur][variable][d:f].resample('D').mean().index , df[df['id']==capteur][variable][d:f].resample('D').mean(),color='r')
     ax1.set_ylabel(unites[f'{variable}'])
     
-    ax2.bar(df[df["id"]==capteur][variable][d:f].resample('D').var().index , df[df['id']==capteur][variable][d:f].resample('D').std(),color='b',alpha=0.2,label='variance')
+    ax2.bar(df[df["id"]==capteur][variable][d:f].resample('D').var().index , df[df['id']==capteur][variable][d:f].resample('D').var(),color='b',alpha=0.2,label='variance')
 
     plt.title( 'Evolution de la moyenne de la variable ' + variable_dico[f'{variable}'] + " et sa variance" )
     plt.legend()
