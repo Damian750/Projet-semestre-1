@@ -93,18 +93,19 @@ def min_max(): #on calcule les min et max journaliers
 ```javascript
 def moyenne():   #on calcule la moyenne journalière
     
-    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+        variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
     d=input('date debut:')
     f=input('date fin:')
     
-    df[variable][d:f].resample('D').mean().plot(label='id=1',ls=':')
+    df[variable][d:f].resample('D').mean().plot(label='',ls=':')
     
-    plt.title('Moyenne journalière')
+    plt.ylabel(variable_dico[f'{variable}'] + ' en ' + unites[f'{variable}'])
+    plt.title('Moyenne journalière pour la variable ' + variable_dico[f'{variable}'])
     plt.show()
 ```
 
 
- * ### c) Ecart-typr
+ * ### c) Ecart-type
 
 ```javascript 
 def ecart_type():
