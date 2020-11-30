@@ -36,14 +36,14 @@ On a dévéloppé pour l'instant deux fonctions permettant de détecter:
 
 ```java
 def anomalie_arret():
-    V=['temp','noise','lum','co2','humidity']
-    capteur_defiant=0
+    V=['temp','noise','lum','co2','humidity'] # on crée la liste des variables pour pouvoir la parcourir.
+    capteur_defiant=0   # on initialise la variable qui va nous permettre d'identifier le capteur défiant.
+    
     for variable in V:
-        
         
         for capteur in range(1,7):
             
-            for k in range(len(df[df['id']==capteur].index)-1):
+            for k in range(len(df[df['id']==capteur].index)-1):    #on parcourt toutes les données du capteur, choisi avec la boucle for précédente.
                 
                 T = df[df['id']==capteur].index[k+1] - df[df['id']==capteur].index[k] #on calcule la différence de temps écoulé entre deux prises de mesures. Il s'agit d'un Timedelta.
                 
@@ -56,9 +56,9 @@ def anomalie_arret():
                     capteur_defiant=capteur
                     
                     df[df['id']==capteur][variable][A._repr_base:B._repr_base].plot(label=f'Arrêt du capteur {capteur}',ls=":",lw=5,color='r')   
-                    #on représente alors toutes les valeurs qui ont présentées cette anomalie.
+                    #on représente alors toutes les valeurs qui ont présentées cette anomalie. Le module ._repr_base donne la date exacte
                     
-            if capteur_defiant==capteur:
+            if capteur_defiant==capteur:   #Si un capteur défiant a été détecté alors on représente la courbe de la variable et du capteur concerné en totalité.
                 
                 df[df['id']==capteur_defiant][variable].plot(label=f'Capteur {capteur_defiant}')
                 plt.title(f'Evolution de la variable "{variable}" en fonction du temps')
