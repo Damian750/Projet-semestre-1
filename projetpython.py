@@ -8,6 +8,41 @@ import matplotlib.pyplot as plt
 df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
 
 
+
+unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%' }
+variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
+
+
+def min():
+    i_mini=0 #on initialise l'indice de la valeur minimale
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('entrer date début (exemple 2020-09):')
+    f=input('entrer date fin:')
+    capteur=int(input("entrer un id du capteur:"))
+        
+        
+        
+    for k in range(len(df[df['id']==capteur][d:f].index)-1):
+        if df[df['id']==capteur][variable][k+1] < df[df['id']==capteur][variable][k]:
+            i_mini=k+1
+            
+    Minimum=df[df['id']==capteur][variable][i_mini] #on stocke la valeur minimale
+    
+    #on relève les caractétistiques (date précisément indexée sous le format Timestamp) de la valeur minimale et de la valeur qui suit pour pouvoir afficher les points:
+    A=df[df['id']==capteur].index[i_mini-1]           
+    B=df[df['id']==capteur].index[i_mini]
+    
+    df[df['id']==capteur][variable][d:f].plot(label=variable_dico[f'{variable}'],color='b')  #on affiche la courbe de la variable sélectionnée
+    
+    df[df['id']==capteur][variable][A._repr_base:B._repr_base].plot(label='minimum',marker='o',color='r')
+    #on afficher le point Minimum
+    plt.ylabel(variable_dico[f'{variable}'] + 'en' + unites[f'{variable}'])
+    plt.title(f'Le minimum est de {Minimum} ' + unites[f'{variable}'])
+    plt.legend()   
+    plt.show()
+
+
+    
 def min_max(): #on calcule les min et max journaliers
     
     variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
@@ -54,23 +89,7 @@ def ecart_type():
     plt.legend()
     plt.show()
     
-    
-def min():
-    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
-    d=input('entrer date début (exemple 2020-09):')
-    f=input('entrer date fin:')
-    L=[int(el) for el in input('choix des capteurs de 1 à 6 (ex: 1 3 5):').split()]
-    for k in range(len(L)):
-        df[df['id']==L[k]][variable][d:f].plot(label=f' capteur {L[k]}')
-    plt.ylabel(unites[f'{variable}'])
-    plt.legend()               
-    A=df[variable].loc[d:f]
-    mini=A.min()
-    plt.title(mini)
-    plt.show()
-
-
-
+  
 def max():
     variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
     d=input('entrer date début (exemple 2020-09):')
