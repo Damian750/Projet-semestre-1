@@ -50,6 +50,54 @@ def ecart_type():
     plt.show()
     
     
+def min():
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('entrer date début (exemple 2020-09):')
+    f=input('entrer date fin:')
+    L=[int(el) for el in input('choix des capteurs de 1 à 6 (ex: 1 3 5):').split()]
+    for k in range(len(L)):
+        df[df['id']==L[k]][variable][d:f].plot(label=f' capteur {L[k]}')
+    plt.ylabel(unites[f'{variable}'])
+    plt.legend()               
+    A=df[variable].loc[d:f]
+    mini=A.min()
+    plt.title(mini)
+    plt.show()
+
+
+
+def max():
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('entrer date début (exemple 2020-09):')
+    f=input('entrer date fin:')
+    L=[int(el) for el in input('choix des capteurs de 1 à 6 (ex: 1 3 5):').split()]
+    for k in range(len(L)):
+        df[df['id']==L[k]][variable][d:f].plot(label=f' capteur {L[k]}')
+    plt.ylabel(unites[f'{variable}'])
+    plt.legend()               
+    A=df[variable].loc[d:f]
+    maxi=A.max()
+    plt.title(maxi)
+    plt.show()
+
+def moye():
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('entrer date début (exemple 2020-09):')
+    f=input('entrer date fin:')
+    L=[int(el) for el in input('choix des capteurs de 1 à 6 (ex: 1 3 5):').split()]
+    for k in range(len(L)):
+        df[df['id']==L[k]][variable][d:f].plot(label=f' capteur {L[k]}')
+    plt.ylabel(unites[f'{variable}'])
+    plt.legend()               
+    A=df[variable].loc[d:f]
+    moye=A.mean()
+    plt.title(moye)
+    A.plot
+    plt.show()
+    
+    
+       
+    
 def humidex():
     
     d=input('date debut:')
