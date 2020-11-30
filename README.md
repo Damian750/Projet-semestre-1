@@ -105,8 +105,8 @@ def moyenne():   #on calcule la moyenne journalière
 ```
 
 
- * ### c) Ecart-type
-
+ * ### c) Ecart-type 
+  * Un FutureWarning peut être retourné sur la console, cela de dépend de la version du IDE.
 ```javascript 
 def ecart_type():
     capteur=int(input("entrer un id du capteur:"))
@@ -126,7 +126,11 @@ def ecart_type():
     plt.legend()
     plt.show()
 ```   
-    
+* ### d) Médiane
+
+* ### e) Variance
+
+* ### f) Indice de corrélation
 ---------------------------------------------------------------------------------
 ## II  Affichage de l'évolution des valeurs
 La fonction ```evolution()``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction. L'utilisateur a la liberté de choisir la combinaison de capteurs qu'il souhaite faire afficher.
