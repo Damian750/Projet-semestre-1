@@ -127,7 +127,15 @@ def ecart_type():
     plt.show()
 ```   
 * ### d) Médiane
+```javascript
+def mediane():  
 
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('date debut:')
+    f=input('date fin:')
+    
+    return (df[variable][d:f].median())
+```
 * ### e) Variance
 
 * ### f) Indice de corrélation
