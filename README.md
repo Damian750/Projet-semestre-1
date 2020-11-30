@@ -14,14 +14,20 @@ Nous avons cherché à afficher les courbes des différentes caractéristiques e
 ```javascript
 df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
 ``` 
+*  ###### 2 dictionnaires:
+On crée une bibliothèque 'unites' pour pouvoir assimiler à une variable son unité de mesure puis l'afficher sur l'axe des ordonnées. Une bibliotèque 'variable_dico' pour traduire les noms des variables en français pour l'intitulé du graphique:
+```javascript 
+unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%' }
+variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
+``` 
 --------------------------------------------------------------------------------
 ## Valeurs statistiques 
 On cherche a calculer min, max, écart-type, moyenne, variance, médiane. Pour cette partie nous nous sommes aidés au début des fonctions pandas déjà existantes. En utilisant les fonctions df.mean, df.max(), df.min(), df.median()…df.describe() on a les données souhaitées. Il nous restait seulement a les appliquer dans les intervalles souhaités et a l’afficher sur les courbes, pour ce faire on utilise matplotlib. 
 Cependant pour cette question nous avons eu deux compréhensions différentes du sujet:
-* l'un pensant qu'il fallait tracer la courbe en y ajoutant la valeur statistique calculée sur cet intervale
-* l'autre qu'il fallait calculer la valeur statistique pour chaque journée et de tracer la courbe d'evolution sur l'intervale donné. Nous avons donc décidé de coder les deux programmes car celles-ci pourraient etre utile pour étudier les données de notre tableau.
+* 1. l'un pensant qu'il fallait tracer la courbe en y ajoutant la valeur statistique calculée sur cet intervale
+* 2 l'autre qu'il fallait calculer la valeur statistique pour chaque journée et de tracer la courbe d'evolution sur l'intervale donné. Nous avons donc décidé de coder les deux programmes car celles-ci pourraient etre utile pour étudier les données de notre tableau.
 
-* #### Minimum ponctuel sur une plage de donnée et une combinaisons de capteurs choisies par l'utilisateur!
+* 1. #### Minimum ponctuel sur une plage de donnée et une combinaisons de capteurs choisies par l'utilisateur!
 ```javascript
 def minimum():
     M=[]#on crée la liste des minimums pour chaque capteur sélectioné
@@ -64,10 +70,9 @@ def minimum():
     plt.show()
 ```
 
+Pour ne pas s'embêter on fait apparaître le min et max tout capteurs confondus(salles ouvertes) pour visualiser l'intervalle qu'il y a entre les valeurs minimales et maximales par jour.
 
-
-
-
+*  2. #### Minimum et Maximum sous la forme plus simple
 
 ```javascript
 def min_max(): #on calcule les min et max journaliers
@@ -96,11 +101,7 @@ def moyenne():   #on calcule la moyenne journalière
 ```
 
 
-On crée une bibliothèque 'unites' pour pouvoir assimiler à une variable son unité de mesure puis l'afficher sur l'axe des ordonnées. Une bibliotèque 'variable_dico' pour traduire les noms des variables en français pour l'intitulé du graphique:
-```javascript 
-unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%' }
-variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
-``` 
+
 
 ```javascript 
 def ecart_type():
