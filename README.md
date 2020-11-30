@@ -24,7 +24,7 @@ variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'
 ## I  Valeurs statistiques 
 On cherche a calculer min, max, écart-type, moyenne, variance, médiane. Pour cette partie nous nous sommes aidés au début des fonctions pandas déjà existantes. En utilisant les fonctions df.mean, df.max(), df.min(), df.median()…df.describe() on a les données souhaitées. Il nous restait seulement a les appliquer dans les intervalles souhaités et a l’afficher sur les courbes, pour ce faire on utilise matplotlib. 
 Cependant pour cette question nous avons eu deux compréhensions différentes du sujet:
-  * 1. l'un pensant qu'il fallait tracer la courbe en y ajoutant la valeur statistique calculée sur cet intervale(effectué pour dans le cas du calcul du minimum)
+  * 1. l'un pensant qu'il fallait tracer la courbe en y ajoutant la valeur statistique calculée sur cet intervale(effectué dans le cas du calcul du minimum)
   * 2. l'autre qu'il fallait calculer la valeur statistique pour chaque journée et de tracer la courbe d'evolution sur l'intervalle donné. Nous avons donc décidé de coder les deux programmes car ceux-ci pourraient être utiles pour étudier les données de notre tableau.
  
  * ### a) Minimum et maximum
