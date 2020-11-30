@@ -5,17 +5,17 @@ Présentation du projet python __Blaszczuk Damian__ et __Gasecki Nicolas__ __Gro
 --------------------------------------------------------------------------------
 ## Introduction brève du code source
 * ##### Recherche de la méthode de manipulation d’un tableau de données sur python:
-Nous disposions d’un ensemble de données sous la forme d’un tableau csv traduisant l’évolution de différentes caractéristiques d’une pièce (température, humidité, bruit) en fonction du temps. Nous avons d'abord cherché à lire ce format csv sur python, pour ce faire la bibliothèque ```panda``` est la plus adaptée. Une fois ces données importées sur python nous avons commencé à traiter ces données afin de les étudier.
+Nous disposions d’un ensemble de données sous la forme d’un tableau csv traduisant l’évolution de différentes caractéristiques d’une pièce (température, humidité, bruit et différents capteurs) en fonction du temps. Nous avons d'abord cherché à lire ce format csv sur python, pour ce faire la bibliothèque ```pandas``` est la plus adaptée. Une fois ces données importées sur python nous avons commencé à traiter ces données afin de les étudier.
 ```javascript
 import pandas as pd
 ```
-* #### Indexing et présentation des courbes:
+* ##### Indexing et présentation des courbes:
 Nous avons cherché à afficher les courbes des différentes caractéristiques en fonction du temps. Pour ce faire, nous avons défini le temps (la Serie ```sent_at```) comme indice principal de notre tableau en prenant en compte qu’il s’agissait de dates. A l’aide de la bibliothèque matplotlib nous avons pu ensuite afficher les courbes souhaitées. 
 ```javascript
 df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
 ``` 
-*  ###### 2 dictionnaires:
-On crée une bibliothèque 'unites' pour pouvoir assimiler à une variable son unité de mesure puis l'afficher sur l'axe des ordonnées. Une bibliotèque 'variable_dico' pour traduire les noms des variables en français pour l'intitulé du graphique:
+* ##### 2 dictionnaires:
+On crée une bibliothèque ```unites``` pour pouvoir assimiler à une variable son unité de mesure puis l'afficher sur l'axe des ordonnées. Une bibliotèque `variable_dico` pour traduire les noms des variables en français pour l'intitulé du graphique:
 ```javascript 
 unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%' }
 variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
