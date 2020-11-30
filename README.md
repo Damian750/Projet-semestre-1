@@ -24,9 +24,10 @@ variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'
 ## I  Valeurs statistiques 
 On cherche a calculer min, max, écart-type, moyenne, variance, médiane. Pour cette partie nous nous sommes aidés au début des fonctions pandas déjà existantes. En utilisant les fonctions df.mean, df.max(), df.min(), df.median()…df.describe() on a les données souhaitées. Il nous restait seulement a les appliquer dans les intervalles souhaités et a l’afficher sur les courbes, pour ce faire on utilise matplotlib. 
 Cependant pour cette question nous avons eu deux compréhensions différentes du sujet:
-  * 1. l'un pensant qu'il fallait tracer la courbe en y ajoutant la valeur statistique calculée sur cet intervale
+  * 1. l'un pensant qu'il fallait tracer la courbe en y ajoutant la valeur statistique calculée sur cet intervale(effectué pour dans le cas du calcul du minimum)
   * 2. l'autre qu'il fallait calculer la valeur statistique pour chaque journée et de tracer la courbe d'evolution sur l'intervalle donné. Nous avons donc décidé de coder les deux programmes car ceux-ci pourraient être utiles pour étudier les données de notre tableau.
-
+ 
+ * ### a) Minimum et maximum
   * 1. #### Minimum ponctuel sur une plage de donnée et pour une combinaison de capteurs choisies par l'utilisateur !
 ```javascript
 def minimum():
@@ -87,6 +88,8 @@ def min_max(): #on calcule les min et max journaliers
     plt.title('min et max journaliers')
     plt.show()
 ```
+ * ### b) Moyenne
+
 ```javascript
 def moyenne():   #on calcule la moyenne journalière
     
@@ -101,7 +104,7 @@ def moyenne():   #on calcule la moyenne journalière
 ```
 
 
-
+ * ### c) Ecart-typr
 
 ```javascript 
 def ecart_type():
@@ -109,8 +112,6 @@ def ecart_type():
     variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
     d=input('entrer date début (exemple 2020-09):')
     f=input('entrer date fin:')
-
-
 
     fig, ax1 = plt.subplots(figsize=(10,4))
     ax2 = ax1.twinx()
@@ -126,7 +127,7 @@ def ecart_type():
 ```   
     
 ---------------------------------------------------------------------------------
-## II Affichage de l'évolution des valeurs
+## II  Affichage de l'évolution des valeurs
 La fonction ```evolution()``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction. L'utilisateur a la liberté de choisir la combinaison de capteurs qu'il souhaite faire afficher.
 
 ```javascript
@@ -152,7 +153,7 @@ variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'
 Par soucis de simplification du code on décide pour les prochaines fonctions de ne plus utiliser ces deux bibliothèques. Les données seront intuitivement interprétées. 
 
 --------
-## III La détection des anomalies
+## III  La détection des anomalies
 Après avoir observé à l'œil nu certaines anomalies sur les courbes tracées précédemment, nous avons cherché un moyen de détecter l’ensemble des anomalies présentes dans nos données. Pour ce faire, nous nous sommes penchés sur la définition d’une anomalie. Nous avons d'abord considéré qu' une valeure était considérée comme une anomalie si elle différait de plus de fois l’écart type par rapport à la moyenne. 
 
 On a dévéloppé pour l'instant deux fonctions permettant de détecter:
