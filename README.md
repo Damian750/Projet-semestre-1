@@ -137,7 +137,26 @@ def mediane():
     return (df[variable][d:f].median())
 ```
 * ### e) Variance
+Sur le même principe que l'écart-type
+```javascript
+def variance():
+    capteur=int(input("entrer un id du capteur:"))
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('entrer date début (exemple 2020-09):')
+    f=input('entrer date fin:')
 
+    fig, ax1 = plt.subplots(figsize=(10,4))
+    ax2 = ax1.twinx()
+    
+    ax1.plot(df[df["id"]==capteur][variable][d:f].resample('D').mean().index , df[df['id']==capteur][variable][d:f].resample('D').mean(),color='r')
+    ax1.set_ylabel(unites[f'{variable}'])
+    
+    ax2.bar(df[df["id"]==capteur][variable][d:f].resample('D').var().index , df[df['id']==capteur][variable][d:f].resample('D').std(),color='b',alpha=0.2,label='variance')
+
+    plt.title( 'Evolution de la moyenne de la variable ' + variable_dico[f'{variable}'] + " et sa variance" )
+    plt.legend()
+    plt.show()
+```
 * ### f) Indice de corrélation
 ---------------------------------------------------------------------------------
 ## II  Affichage de l'évolution des valeurs
