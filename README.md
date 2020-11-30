@@ -19,7 +19,10 @@ On crée une bibliothèque ```unites``` pour pouvoir assimiler à une variable s
 ```javascript 
 unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%' }
 variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
-``` 
+```
+* ##### Choix arbitraire
+En évaluant les variables (partie II) on a décide dans la plupart des fonctions de spécifier le capteur qu'on désire étudier. Le capteur 6 présente que des donnés de 2019 alors que les autres celles de 2020.
+
 --------------------------------------------------------------------------------
 ## I  Valeurs statistiques 
 On cherche a calculer min, max, écart-type, moyenne, variance, médiane. Pour cette partie nous nous sommes aidés au début des fonctions pandas déjà existantes. En utilisant les fonctions df.mean, df.max(), df.min(), df.median()…df.describe() on a les données souhaitées. Il nous restait seulement a les appliquer dans les intervalles souhaités et a l’afficher sur les courbes, pour ce faire on utilise matplotlib. 
