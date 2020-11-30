@@ -21,7 +21,7 @@ unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%'
 variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
 ``` 
 --------------------------------------------------------------------------------
-## Valeurs statistiques 
+## I Valeurs statistiques 
 On cherche a calculer min, max, écart-type, moyenne, variance, médiane. Pour cette partie nous nous sommes aidés au début des fonctions pandas déjà existantes. En utilisant les fonctions df.mean, df.max(), df.min(), df.median()…df.describe() on a les données souhaitées. Il nous restait seulement a les appliquer dans les intervalles souhaités et a l’afficher sur les courbes, pour ce faire on utilise matplotlib. 
 Cependant pour cette question nous avons eu deux compréhensions différentes du sujet:
   * 1. l'un pensant qu'il fallait tracer la courbe en y ajoutant la valeur statistique calculée sur cet intervale
@@ -126,7 +126,7 @@ def ecart_type():
 ```   
     
 ---------------------------------------------------------------------------------
-## Affichage de l'évolution des valeurs
+## II Affichage de l'évolution des valeurs
 La fonction ```evolution()``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction. L'utilisateur a la liberté de choisir la combinaison de capteurs qu'il souhaite faire afficher.
 
 ```javascript
@@ -152,14 +152,14 @@ variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'
 Par soucis de simplification du code on décide pour les prochaines fonctions de ne plus utiliser ces deux bibliothèques. Les données seront intuitivement interprétées. 
 
 --------
-### La détection des anomalies
+## III La détection des anomalies
 Après avoir observé à l'œil nu certaines anomalies sur les courbes tracées précédemment, nous avons cherché un moyen de détecter l’ensemble des anomalies présentes dans nos données. Pour ce faire, nous nous sommes penchés sur la définition d’une anomalie. Nous avons d'abord considéré qu' une valeure était considérée comme une anomalie si elle différait de plus de fois l’écart type par rapport à la moyenne. 
 
 On a dévéloppé pour l'instant deux fonctions permettant de détecter:
 * si un capteur s'arrête de fonctionner pendant un temps anormal (plus d'un jour). ___```anomalie_arret()```___
 * des anomalies de valeurs en calculant leur différence avec la moyenne journalière et comparant cette différence à l'écart-type. ___```anomalie_valeur()```___
 
-######`Anomalie_Arret()`
+###### Anomalie_Arret()
 ```javascript
 def anomalie_arret():
     V=['temp','noise','lum','co2','humidity'] # on crée la liste des variables pour pouvoir la parcourir.
@@ -192,4 +192,4 @@ def anomalie_arret():
                 plt.show()
     print(f'Le capteur qui présente une anomalie d arrêt est le capteur "{capteur_defiant}"')
 ```
-######```Anomalie_Valeurs()```
+###### Anomalie_Valeurs()
