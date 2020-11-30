@@ -31,22 +31,27 @@ def moyenne():   #on calcule la moyenne journalière
     plt.title('Moyenne journalière')
     plt.show()
   
+#On crée une bibliothèque 'unites' pour pouvoir assimiler à une variable son unité de mesure puis l'afficher sur l'axe des ordonnées. Une bibliotèque 'variable_dico' pour traduire les noms des variables en français pour l'intitulé du graphique:
+
+unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%' }
+variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
+
 def ecart_type():
     capteur=int(input("entrer un id du capteur:"))
     variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
     d=input('entrer date début (exemple 2020-09):')
     f=input('entrer date fin:')
 
-
-
-    fig, ax = plt.subplots(figsize=(8,5))
-    ax2 = ax.twinx()
+    fig, ax1 = plt.subplots(figsize=(10,4))                 #on paramètres les deux axes ordonnées, un pour la moyenne, l'autre pour l'ecart-type
+    ax2 = ax1.twinx()
     
-    ax.plot(df[df["id"]==capteur][variable][d:f].resample('D').mean().index,df[df['id']==capteur][variable][d:f].resample('D').mean(),color='r')
+    ax1.plot(df[df["id"]==capteur][variable][d:f].resample('D').mean().index , df[df['id']==capteur][variable][d:f].resample('D').mean(),color='r')
+    ax1.set_ylabel(unites[f'{variable}'])
     
-    ax2.bar(df[df["id"]==capteur][variable][d:f].resample('D').std().index,df[df['id']==capteur][variable][d:f].resample('D').std(),color='b',alpha=0.2)
+    ax2.bar(df[df["id"]==capteur][variable][d:f].resample('D').std().index , df[df['id']==capteur][variable][d:f].resample('D').std(),color='b',alpha=0.2,label='ecart-type')
 
-
+    plt.title( 'Evolution de la moyenne de la variable ' + variable_dico[f'{variable}'] + " et son ecart-type" )
+    plt.legend()
     plt.show()
     
     
