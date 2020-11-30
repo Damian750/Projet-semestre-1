@@ -17,6 +17,52 @@ df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
 --------------------------------------------------------------------------------
 ## Valeurs statistiques 
 On cherche a calculer min, max, écart-type, moyenne, variance, médiane. Pour cette partie nous nous sommes aidés des fonctions pandas déjà existantes. En utilisant les fonctions df.mean, df.max, df.min, df.median… on a les données souhaitées. Il nous restait seulement a les appliquer dans les intervalles souhaités et a l’afficher sur les courbes, pour ce faire on utilise matplotlib avec la fonction pyplot.text. Cependant pour cette question nous avons eu deux compréhensions différentes du sujet, l'un pensant qu'il fallait seulement tracer la courbe en y ajoutant la valeur statistique calculée sur cet intervale et l'autre qu'il fallait calculer la valeur statistique pour chaque journée et de tracer la courbe d'evolution sur l'intervale donné. Nous avons donc décidé de coder les deux programmes car celles-ci pourraient etre utile pour étudier les données de notre tableau.
+```javascript
+def minimum():
+    M=[]#on crée la liste des minimums pour chaque capteur sélectioné
+    i_mini=0 #on initialise l'indice de la valeur minimale
+    I=[]#on crée la liste des indices des minimums pour chaque capteur sélectioné
+
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('entrer date début (exemple 2020-09):')
+    f=input('entrer date fin:')
+    L=[int(el) for el in input('choix des capteurs de 1 à 6 (ex: 1 3 5):').split()]  #on choisit la combinaison de capteurs souhaités.
+        
+        
+    for capteur in range(len(L)):  #on parcourt la liste des capteurs sélectionnés
+        
+        df[df['id']==L[capteur]][variable][d:f].plot(label=f' capteur {L[capteur]}') #on affiche la courbe de la variable sélectionnée
+        
+        Min=df[df['id']==L[capteur]][variable][0] #Initialisation
+        
+        for k in range(len(df[df['id']==L[capteur]][d:f].index)-1):#on parcourt toutes les valeurs de la Serie dans la plage temporelle sélectionnée.
+            
+            if df[df['id']==L[capteur]][variable][k+1] < Min: #comparaison des valeurs au minimum en cours.
+                i_mini = k+1 #on stocke l'indice de la valeur minimale en cours.
+                Min = df[df['id']==L[capteur]][variable][k+1] #on actualise la valeur du minimum
+        
+        M.append(Min) #on stocke la valeur minimale du capteur qu'on est en train de parcourir.
+        I.append(i_mini)  #on stocke également son indice
+     
+    
+    Minimum = min(M)   #Ici on s'autorise à utiliser la bibliothèque python pour calculer le minimum de la liste et éviter à faire une boucle for en plus.
+    Indice_du_minimum = I[M.index(Minimum)] #Identification de l'indice correspondant
+    
+    #on relève les caractétistiques (date précisément indexée sous le format Timestamp)de la valeur minimale pour pouvoir afficher le point avec .index:
+    A = df[df['id']==L[M.index(Minimum)]][variable].index[Indice_du_minimum]           
+    
+    df[df['id']==L[M.index(Minimum)]][variable][A._repr_base:A._repr_base].plot(label='minimum',marker='o',color='r') #affiche la valeur minimum
+    
+    plt.ylabel(variable_dico[f'{variable}'] + ' en ' + unites[f'{variable}'])
+    plt.title(f'Le minimum est de {Minimum} ' + unites[f'{variable}'])
+    plt.legend()   
+    plt.show()
+```
+
+
+
+
+
 
 ```javascript
 def min_max(): #on calcule les min et max journaliers
