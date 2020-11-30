@@ -10,7 +10,7 @@ Nous disposions d’un ensemble de données sous la forme d’un tableau csv tra
 import pandas as pd
 ```
 ### Indexing et présentation des courbes:
-Nous avons cherché à afficher les courbes des différentes caractéristiques en fonction du temps. Pour ce faire, nous avons défini le temps (« sent_at ») comme indice principal de notre tableau en prenant en compte qu’il s’agissait de dates. A l’aide de la bibliothèque matplotlib nous avons pu ensuite afficher les courbes souhaitées. 
+Nous avons cherché à afficher les courbes des différentes caractéristiques en fonction du temps. Pour ce faire, nous avons défini le temps (la Serie ```sent_at```) comme indice principal de notre tableau en prenant en compte qu’il s’agissait de dates. A l’aide de la bibliothèque matplotlib nous avons pu ensuite afficher les courbes souhaitées. 
 ```javascript
 df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
 ```
