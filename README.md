@@ -3,18 +3,17 @@ Présentation du projet python __Blaszczuk Damian__ et __Gasecki Nicolas__ __Gro
 
 ### Sujet n°1
 --------------------
-
-### Recherche de la méthode de manipulation d’un tableau de données sur python:
+## Introduction brève du code source
+  #### Recherche de la méthode de manipulation d’un tableau de données sur python:
 Nous disposions d’un ensemble de données sous la forme d’un tableau csv traduisant l’évolution de différentes caractéristiques d’une pièce (température, humidité, bruit) en fonction du temps. Nous avons d'abord cherché à lire ce format csv sur python, pour ce faire la bibliothèque ```panda``` est la plus adaptée. Une fois ces données importées sur python nous avons commencé à traiter ces données afin de les étudier.
 ```javascript
 import pandas as pd
 ```
-### Indexing et présentation des courbes:
+  #### Indexing et présentation des courbes:
 Nous avons cherché à afficher les courbes des différentes caractéristiques en fonction du temps. Pour ce faire, nous avons défini le temps (la Serie ```sent_at```) comme indice principal de notre tableau en prenant en compte qu’il s’agissait de dates. A l’aide de la bibliothèque matplotlib nous avons pu ensuite afficher les courbes souhaitées. 
 ```javascript
 df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
-```
-
+``` 
 
 ## Evolutions des valeurs
 La fonction ```evolution()``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction.
@@ -42,11 +41,12 @@ variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'
 Par soucis de simplification du code on décide pour les prochaines fonctions de ne plus utiliser ces deux bibliothèques. Les données seront intuitivement interprétées. 
 
 --------
-## Détections d'anomalies
+### Détections d'anomalies
+Après avoir observé à l'œil nu certaines anomalies sur les courbes tracées précédemment, nous avons cherché un moyen de détecter l’ensemble des anomalies présentes dans nos données. Pour ce faire, nous nous sommes penchés sur la définition d’une anomalie. Nous avons d'abord considéré qu' une valeure était considérée comme une anomalie si elle différait de plus de fois l’écart type par rapport à la moyenne. 
 
 On a dévéloppé pour l'instant deux fonctions permettant de détecter:
-* si un capteur s'arrête de fonctionner pendant un temps anormal (plus d'un jour). ```anomalie_arret()```
-* des anomalies de valeurs en calculant leur différence avec la moyenne journalière et comparant cette différence à l'écart-type. ```anomalie_valeur()```
+* si un capteur s'arrête de fonctionner pendant un temps anormal (plus d'un jour). ___```anomalie_arret()```___
+* des anomalies de valeurs en calculant leur différence avec la moyenne journalière et comparant cette différence à l'écart-type. ___```anomalie_valeur()```___
 
 ```java
 def anomalie_arret():
