@@ -1,7 +1,19 @@
 # Projet-semestre-1
 Présentation du projet python __Blaszczuk Damian__ et __Gasecki Nicolas__ __Groupe 23__
 
-----
+# Sujet n°1
+--------------------
+
+### Recherche de la méthode de manipulation d’un tableau de données sur python:
+Nous disposions d’un ensemble de données sous la forme d’un tableau csv traduisant l’évolution de différentes caractéristiques d’une pièce (température, humidité, bruit) en fonction du temps. Nous avons d'abord cherché à lire ce format csv sur python, pour ce faire la bibliothèque ```panda``` est la plus adaptée. Une fois ces données importées sur python nous avons commencé à traiter ces données afin de les étudier.
+
+### Indexing et présentation des courbes:
+Nous avons cherché à afficher les courbes des différentes caractéristiques en fonction du temps. Pour ce faire, nous avons défini le temps (« sent_at ») comme indice principal de notre tableau en prenant en compte qu’il s’agissait de dates. A l’aide de la bibliothèque matplotlib nous avons pu ensuite afficher les courbes souhaitées. 
+```javascript
+df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
+```
+
+
 ## Evolutions des valeurs
 La fonction ```evolution()``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction.
 
