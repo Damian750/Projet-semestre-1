@@ -3,8 +3,8 @@ Présentation du projet python __Blaszczuk Damian__ et __Gasecki Nicolas__ __Gro
 
 ### Sujet n°1
 --------------------
-## Introduction brève du code source
-  #### Recherche de la méthode de manipulation d’un tableau de données sur python:
+## * Introduction brève du code source
+####     * Recherche de la méthode de manipulation d’un tableau de données sur python:
 Nous disposions d’un ensemble de données sous la forme d’un tableau csv traduisant l’évolution de différentes caractéristiques d’une pièce (température, humidité, bruit) en fonction du temps. Nous avons d'abord cherché à lire ce format csv sur python, pour ce faire la bibliothèque ```panda``` est la plus adaptée. Une fois ces données importées sur python nous avons commencé à traiter ces données afin de les étudier.
 ```javascript
 import pandas as pd
@@ -16,7 +16,7 @@ df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
 ``` 
 
 ## Evolutions des valeurs
-La fonction ```evolution()``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction.
+La fonction ```evolution()``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction. L'utilisateur a la liberté de choisir la combinaison de capteurs qu'il souhaite faire afficher.
 
 ```javascript
 def evolution():
