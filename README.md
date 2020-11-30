@@ -5,7 +5,7 @@ Présentation du projet python __Blaszczuk Damian__ et __Gasecki Nicolas__ __Gro
 ## Evolutions des valeurs
 La fonction ```evolution()``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction.
 
-```java
+```javascript
 def evolution():
         variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
         d=input('entrer date début (exemple 2020-09):')
@@ -31,8 +31,8 @@ Par soucis de simplification du code on décide pour les prochaines fonctions de
 ## Détections d'anomalies
 
 On a dévéloppé pour l'instant deux fonctions permettant de détecter:
-*si un capteur s'arrête de fonctionner pendant un temps anormal (plus d'un jour). ```anomalie_arret()```
-*des anomalies de valeurs en calculant leur différence avec la moyenne journalière et comparant cette différence à l'écart-type. ```anomalie_valeur()```
+* si un capteur s'arrête de fonctionner pendant un temps anormal (plus d'un jour). ```anomalie_arret()```
+* des anomalies de valeurs en calculant leur différence avec la moyenne journalière et comparant cette différence à l'écart-type. ```anomalie_valeur()```
 
 ```java
 def anomalie_arret():
