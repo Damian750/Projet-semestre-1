@@ -21,17 +21,18 @@ def evolution():
         plt.show()
 ```
 Dans cette première fonction on a crée deux bibliothèques. Une bibliothèque 'unites' pour pouvoir assimiler à une variable son unité de mesure puis l'afficher sur l'axe des ordonnées. Une bibliotèque 'variable_dico' pour traduire les noms des variables en français pour l'intitulé du graphique:
-```java
+```javascript
 unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%' }
 variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
 ```
 Par soucis de simplification du code on décide pour les prochaines fonctions de ne plus utiliser ces deux bibliothèques. Les données seront intuitivement interprétées. 
 
 --------
+## Détections d'anomalies
 
 On a dévéloppé pour l'instant deux fonctions permettant de détecter:
--si un capteur s'arrête de fonctionner pendant un temps anormal (plus d'un jour)```anomalie_arret()```
--des anomalies de valeurs en calculant leur différence avec la moyenne journalière et comparant cette différence à l'écart-type```anomalie_valeur()```
+*si un capteur s'arrête de fonctionner pendant un temps anormal (plus d'un jour). ```anomalie_arret()```
+*des anomalies de valeurs en calculant leur différence avec la moyenne journalière et comparant cette différence à l'écart-type. ```anomalie_valeur()```
 
 ```java
 def anomalie_arret():
