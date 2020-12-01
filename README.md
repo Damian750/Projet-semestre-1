@@ -391,6 +391,7 @@ def occupation():
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 ## V Commentaires
 
-La compréhension  des principes fondamentaux de la bibliothèque pandas et la prise en main de github a été longue.
+La compréhension  des principes fondamentaux de la bibliothèque pandas et la prise en main de github a été longue et présente encore quelques difficultés.
+N'ayant pas écris sous JupiterNotebook nous n'avions pas écris cette présentation du projet sous le format `.ipynb`ce qui serait plus judicieux et un gain de temps. Les fonctions sont réprésentées dans des bloc mais qui à l'origine sont écris en javascript or nous étions sur pyzo. Les couleurs surlignées ne sont pas adéquates mais en terme de présentation cela est plus compréhensible qu'un texte de même couleur
 
 
