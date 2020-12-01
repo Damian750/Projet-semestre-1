@@ -73,6 +73,7 @@ def minimum():
     plt.legend()   
     plt.show()
 ```
+On a fait la même fonction pour le maximum aussi `maximum()`. Elle se trouve dans le fichier `projetpython.py`
 
 Pour ne pas s'embêter on fait apparaître le min et max tout capteurs confondus(salles ouvertes) pour visualiser l'intervalle qu'il y a entre les valeurs minimales et maximales par jour. On utilise le module `.resample()` avec D--> Day :
 
@@ -91,6 +92,31 @@ def min_max(): #on calcule les min et max journaliers
     plt.title('min et max journaliers')
     plt.show()
 ```
+    
+  * 3. min max et moyenne
+
+```javascript
+def min_max_moy(): #on projette les min et max plus la moyenne par jour, on utilise ici .aggreagate pour regrouper facilement les valeurs statistiques
+    
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('date debut:')
+    f=input('date fin:')
+    
+    d=df[variable][d:f].resample('D').agg(['mean','min','max'])
+    
+    
+    d['mean'].plot(label='Moyenne',ls=':')#on affiche la moyenne
+    d['max'].plot(label='',ls='-',color='r')
+    d['min'].plot(label='',ls='-',color='r')
+    plt.fill_between(d.index, d['min'],d['max'],alpha=0.2,label='Ecart Min-Max par jour') #on affiche min et max
+    
+    
+    plt.ylabel(variable_dico[f'{variable}'] + ' en ' + unites[f'{variable}'])
+    plt.title('Minimum Maximum et Moyennes journaliers')
+    plt.legend() 
+    plt.show()
+```
+ 
  * ### b) Moyenne
   * La fonction affiche la moyenne journalière d'une variable. Comme précisé en amont. Il serait plus judicieux de demander les capteurs choisis mais on se contente ici de voir la vision globale avec les valeurs de 2020 et de 2019 mesurées par le capteur id=6.
 ```javascript
