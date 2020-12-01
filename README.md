@@ -292,7 +292,7 @@ def anomalie_valeur():
             # Une valeur présentant un écart à la moyenne inférieur à l'écart type est banale, compris entre une et deux fois l'écart type est modérément courante, compris entre deux et trois fois l'écart type commence a être remarquable,compris entre trois et quatre fois l'écart type est exceptionnelle, supérieur à quatre fois l'écart type est historique et très rare.
             
             if D>=s and D<2*s:
-                            df[df['id']==L[capteur]][variable][d:f][k:k+1].plot(label='',lw=2,color='g',marker='o')
+                            df[df['id']==L[capteur]][variable][d:f][k:k+1].plot(label='',lw=2,color='g',marker='o')   #on affiche les points pour les anomalies détéctées grâce à l'indice k
                             anomalie_1+=1
             
             if D>=2*s and D<3*s:
