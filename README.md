@@ -182,6 +182,7 @@ def correlation():
     plt.legend()
     plt.show()
  ```
+ * ### g) Indice Humidex
 ---------------------------------------------------------------------------------
 ## II  Affichage de l'évolution des valeurs
 La fonction ```evolution()``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction. L'utilisateur a la liberté de choisir la combinaison de capteurs qu'il souhaite faire afficher.
