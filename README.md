@@ -183,6 +183,8 @@ def correlation():
     plt.show()
  ```
  * ### g) Indice Humidex
+ L’humidex est une formule combinant température et humidité, ainsi pour la trouver nous avons effectué des opérations entre les diverses colonnes de notre tableau. Pour plus de lisibilité dans notre programme nous avons créé deux données intermédiaires ; la température de rosée et alpha dépendant également de la température et de l’humidité. Puis grâce à ces valeurs nous avons pu calculer l’humidex pour l’ensemble des dates.On s’est donc retrouvé avec une ligne de code nous permettant d’afficher le tableau de données avec une nouvelle colonne contenant l’humidex.
+ Enfin nous avons codé une fonction nous demandant l’intervalle de temps que l’on voulait étudié afin de réduire notre tableau à la colonne de l’humidex dans cette intervalle de temps puis enfin de tracer la courbe de l’humidex en fonction du temps. Les difficultés rencontrées dans cette partie ont été différentes. Tout d'abord il a fallu comprendre les formules de calculs ainsi que les grandeurs y intervenant. En effet lors de la première version du programme, nous avons obtenus des valeurs d'humidex incohérentes. On s'est alors rendez compte que nous aavions un souci d'unité avec certaines données présentes sous forme de pourcentage. Une fois cela corrigé nous avons bien obtenu les valeurs souhaitées
  ```javascript
  def humidex():
     
