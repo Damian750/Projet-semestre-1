@@ -74,7 +74,7 @@ def minimum():
     plt.show()
 ```
 
-Pour ne pas s'embêter on fait apparaître le min et max tout capteurs confondus(salles ouvertes) pour visualiser l'intervalle qu'il y a entre les valeurs minimales et maximales par jour. On utilise le module `.resample()` avec D--> Day
+Pour ne pas s'embêter on fait apparaître le min et max tout capteurs confondus(salles ouvertes) pour visualiser l'intervalle qu'il y a entre les valeurs minimales et maximales par jour. On utilise le module `.resample()` avec D--> Day :
 
   *  2. #### Minimum et Maximum sous la forme plus simple
 
@@ -92,11 +92,11 @@ def min_max(): #on calcule les min et max journaliers
     plt.show()
 ```
  * ### b) Moyenne
-
+  * La fonction affiche la moyenne journalière d'une variable. Comme précisé en amont. Il serait plus judicieux de demander les capteurs choisis mais on se contente ici de voir la vision globale avec les valeurs de 2020 et de 2019 mesurées par le capteur id=6.
 ```javascript
 def moyenne():   #on calcule la moyenne journalière
     
-        variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
     d=input('date debut:')
     f=input('date fin:')
     
