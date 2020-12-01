@@ -357,11 +357,11 @@ On crée la fonction `occupation()` en considérant que les salles sont occupée
  * La liste des horaires d'occupation 
  * Et le tableau Dataframe
 
+```javascript
 def occupation():
     H,J=[],[] #Deux listes pour les horaires et les journées correspondantes
     capteur=int(input('entrer un id du capteur:'))
-
-             
+    
     for k in range(len(df[df['id']==capteur].index)-1):
     
         if df[df['id']==capteur]['co2'][k]>490 :  #on considère que la salle est occupée à partir de 490ppm, pour ne pas prendre en compte les week-end.
