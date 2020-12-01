@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-#os.chdir('C:\\Users\\22bla\\Documents\\Damien Ecole\\Info') chemin d'accès
+os.chdir('C:\\Users\\22bla\\Documents\\Damien Ecole\\Info') 
 
 df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
 
@@ -93,8 +93,6 @@ def maximum():  #exactement le même prcoédé que la fonction précédente
     plt.title(f'Le maximum est de {Maximum} ' + unites[f'{variable}'])
     plt.legend()   
     plt.show()
-
-
     
 def min_max(): #on calcule les min et max journaliers
     
@@ -105,7 +103,9 @@ def min_max(): #on calcule les min et max journaliers
     df.loc[d:f,variable].resample('D').min().plot(label='min')
     df.loc[d:f,variable].resample('D').max().plot(label='max')
     
-    plt.title('min et max journaliers')
+    plt.ylabel(variable_dico[f'{variable}'] + ' en ' + unites[f'{variable}'])
+    plt.title('Minimum et Maximum journaliers')
+    plt.legend() 
     plt.show()
     
 def moyenne():   #on calcule la moyenne journalière
@@ -114,11 +114,31 @@ def moyenne():   #on calcule la moyenne journalière
     d=input('date debut:')
     f=input('date fin:')
     
-    df[variable][d:f].resample('D').mean().plot(label='id=1',ls=':')
+    df[variable][d:f].resample('D').mean().plot(label='',ls=':')
     
+    plt.ylabel(variable_dico[f'{variable}'] + ' en ' + unites[f'{variable}'])
     plt.title('Moyenne journalière')
     plt.show()
-  
+
+def min_max_moy(): #on projette les min et max plus la moyenne par jour, on utilise ici .aggreagate pour regrouper facilement les valeurs statistiques
+    
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('date debut:')
+    f=input('date fin:')
+    
+    d=df[variable][d:f].resample('D').agg(['mean','min','max'])
+    
+    
+    d['mean'].plot(label='Moyenne',ls=':')#on affiche la moyenne
+    d['max'].plot(label='',ls='-',color='r')
+    d['min'].plot(label='',ls='-',color='r')
+    plt.fill_between(d.index, d['min'],d['max'],alpha=0.2,label='Ecart Min-Max par jour') #on affiche min et max
+    
+    
+    plt.ylabel(variable_dico[f'{variable}'] + ' en ' + unites[f'{variable}'])
+    plt.title('Minimum Maximum et Moyennes journaliers')
+    plt.legend() 
+    plt.show()
 
 def ecart_type():
     capteur=int(input("entrer un id du capteur:"))
@@ -129,10 +149,10 @@ def ecart_type():
     fig, ax1 = plt.subplots(figsize=(10,4))                 #on paramètres les deux axes ordonnées, un pour la moyenne, l'autre pour l'ecart-type
     ax2 = ax1.twinx()
     
-    ax1.plot(df[df["id"]==capteur][variable][d:f].resample('D').mean().index , df[df['id']==capteur][variable][d:f].resample('D').mean(),color='r')
+    ax1.plot(df[df["id"]==capteur][variable][d:f].resample('D').mean().index , df[df['id']==capteur][variable][d:f].resample('D').mean(),color='r',label='Moyenne')
     ax1.set_ylabel(unites[f'{variable}'])
     
-    ax2.bar(df[df["id"]==capteur][variable][d:f].resample('D').std().index , df[df['id']==capteur][variable][d:f].resample('D').std(),color='b',alpha=0.2,label='ecart-type')
+    ax2.bar(df[df["id"]==capteur][variable][d:f].resample('D').std().index , df[df['id']==capteur][variable][d:f].resample('D').std(),color='b',alpha=0.2,label='Ecart-type')
 
     plt.title( 'Evolution de la moyenne de la variable ' + variable_dico[f'{variable}'] + " et son ecart-type" )
     plt.legend()
@@ -155,7 +175,7 @@ def variance(): #sur le même principe que l'ecart-type
     fig, ax1 = plt.subplots(figsize=(10,4))
     ax2 = ax1.twinx()
     
-    ax1.plot(df[df["id"]==capteur][variable][d:f].resample('D').mean().index , df[df['id']==capteur][variable][d:f].resample('D').mean(),color='r')
+    ax1.plot(df[df["id"]==capteur][variable][d:f].resample('D').mean().index , df[df['id']==capteur][variable][d:f].resample('D').mean(),color='r',label='Moyenne')
     ax1.set_ylabel(unites[f'{variable}'])
     
     ax2.bar(df[df["id"]==capteur][variable][d:f].resample('D').var().index , df[df['id']==capteur][variable][d:f].resample('D').var(),color='b',alpha=0.2,label='variance')
@@ -172,19 +192,19 @@ def correlation():
     f = plt.figure()
     ax = f.add_subplot(111)
 
-    df[variable1].plot(label='evolution de la ' +variable_dico[f'{variable1}'] )
-    df[variable2].plot(label='evolution de la ' +variable_dico[f'{variable2}'] )#Affichage des deux courbes représentant les deux variables en fonction du temps.
+    df[variable1].plot(label='evolution de la variable ' +variable_dico[f'{variable1}'] )
+    df[variable2].plot(label='evolution de la variable ' +variable_dico[f'{variable2}'] )#Affichage des deux courbes représentant les deux variables en fonction du temps.
     
     indice = df[variable1].corr(df[ variable2]) #indice de corrélation entre les deux variables
 
     
     plt.text(0.5,0.5,f"l'indice de correlation est {indice}",horizontalalignment='center',
-     verticalalignment='center', transform = ax.transAxes, fontsize=7, color='r')#Indication dans de la valeur de l’indice de corrélation
+     verticalalignment='center', transform = ax.transAxes, fontsize=7, color='r')#Indication dans la console de la valeur de l’indice de corrélation
 
     plt.legend()
     plt.show() 
-       
-    
+
+
 def humidex():
     
     d=input('date debut:')
