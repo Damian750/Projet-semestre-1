@@ -12,6 +12,7 @@ df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
 unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%' }
 variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
 
+##Statistiques
 
 def minimum():
     M=[]#on crée la liste des minimums pour chaque capteur sélectioné
@@ -163,11 +164,6 @@ def humidex():
     
 ##L’évolution d’une variable en fonction du temps
 
-
-#On crée une bibliothèque 'unites' pour pouvoir assimiler à une variable son unité de mesure puis l'afficher sur l'axe des ordonnées. Une bibliotèque 'variable_dico' pour traduire les noms des variables en français pour l'intitulé du graphique:
-
-
-
 def evolution():
         variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
         d=input('entrer date début (exemple 2020-09):')
@@ -183,7 +179,7 @@ def evolution():
         plt.show()
         
      
- #Anomalies   
+ ##Anomalies   
     
 
 
