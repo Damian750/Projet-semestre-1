@@ -109,7 +109,7 @@ def moyenne():   #on calcule la moyenne journalière
 
 
  * ### c) Ecart-type 
-  * Un FutureWarning peut être retourné sur la console, cela dépend de la version de l'IDE.
+  * On décide d'afficher l'écart-type et la moyenne sur le même graohique. Pour cela on a créé deux repères différents `ax1` pour la moyenne `mean()` et `ax2` pour l'ecart-type`std()` grâce aux modules `.subplots`et `.twinx`. Un FutureWarning peut être retourné sur la console, cela dépend de la version de l'IDE.
 ```javascript 
 def ecart_type():
     capteur=int(input("entrer un id du capteur:"))
