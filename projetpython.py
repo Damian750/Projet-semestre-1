@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-os.chdir('C:\\Users\\22bla\\Documents\\Damien Ecole\\Info') 
+#os.chdir('C:\\Users\\22bla\\Documents\\Damien Ecole\\Info') chemin d'accès
 
 df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
 
