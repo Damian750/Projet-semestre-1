@@ -161,6 +161,27 @@ def variance():
     plt.show()
 ```
 * ### f) Indice de corrélation
+```javascript
+def correlation():
+    
+    variable1=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    variable2=input('entrer une deuxieme variable (temp,humidity,co2,noise,lum):')
+    
+    f = plt.figure()
+    ax = f.add_subplot(111)
+
+    df[variable1].plot(label='evolution de la ' +variable_dico[f'{variable1}'] )
+    df[variable2].plot(label='evolution de la ' +variable_dico[f'{variable2}'] )#Affichage des deux courbes représentant les deux variables en fonction du temps.
+    
+    indice = df[variable1].corr(df[ variable2]) #indice de corrélation entre les deux variables
+
+    
+    plt.text(0.5,0.5,f"l'indice de correlation est {indice}",horizontalalignment='center',
+     verticalalignment='center', transform = ax.transAxes, fontsize=7, color='r')#Indication dans de la valeur de l’indice de corrélation
+
+    plt.legend()
+    plt.show()
+ ```
 ---------------------------------------------------------------------------------
 ## II  Affichage de l'évolution des valeurs
 La fonction ```evolution()``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction. L'utilisateur a la liberté de choisir la combinaison de capteurs qu'il souhaite faire afficher.
