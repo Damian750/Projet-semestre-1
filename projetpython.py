@@ -33,9 +33,9 @@ def minimum():
         
         for k in range(len(df[df['id']==L[capteur]][d:f].index)-1):#on parcourt toutes les valeurs de la Serie dans la plage temporelle sélectionnée.
             
-            if df[df['id']==L[capteur]][variable][k+1] < Min: #comparaison des valeurs au minimum en cours.
+            if df[df['id']==L[capteur]][variable][d:f][k+1] < Min: #comparaison des valeurs au minimum en cours.
                 i_mini = k+1 #on stocke l'indice de la valeur minimale en cours.
-                Min = df[df['id']==L[capteur]][variable][k+1] #on actualise la valeur du minimum
+                Min = df[df['id']==L[capteur]][variable][d:f][k+1] #on actualise la valeur du minimum
         
         M.append(Min) #on stocke la valeur minimale du capteur qu'on est en train de parcourir.
         I.append(i_mini)  #on stocke également son indice
@@ -45,12 +45,52 @@ def minimum():
     Indice_du_minimum = I[M.index(Minimum)] #Identification de l'indice correspondant
     
     #on relève les caractétistiques (date précisément indexée sous le format Timestamp)de la valeur minimale pour pouvoir afficher le point avec .index:
-    A = df[df['id']==L[M.index(Minimum)]][variable].index[Indice_du_minimum]           
+    A = df[df['id']==L[M.index(Minimum)]][variable][d:f].index[Indice_du_minimum]           
     
     df[df['id']==L[M.index(Minimum)]][variable][A._repr_base:A._repr_base].plot(label='minimum',marker='o',color='r') #affiche la valeur minimum
     
     plt.ylabel(variable_dico[f'{variable}'] + ' en ' + unites[f'{variable}'])
     plt.title(f'Le minimum est de {Minimum} ' + unites[f'{variable}'])
+    plt.legend()   
+    plt.show()
+
+def maximum():  #exactement le même prcoédé que la fonction précédente
+    M=[]#on crée la liste des maximum pour chaque capteur sélectioné
+    i_maxi=0 #on initialise l'indice de la valeur maximale
+    I=[]#on crée la liste des indices des maximum pour chaque capteur sélectioné
+
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('entrer date début (exemple 2020-09):')
+    f=input('entrer date fin:')
+    L=[int(el) for el in input('choix des capteurs de 1 à 6 (ex: 1 3 5):').split()]  #on choisit la combinaison de capteurs souhaités.
+        
+        
+    for capteur in range(len(L)):  #on parcourt la liste des capteurs sélectionnés
+        
+        df[df['id']==L[capteur]][variable][d:f].plot(label=f' capteur {L[capteur]}') #on affiche la courbe de la variable sélectionnée
+        
+        Max=df[df['id']==L[capteur]][variable][0] #Initialisation
+        
+        for k in range(len(df[df['id']==L[capteur]][d:f].index)-1):#on parcourt toutes les valeurs de la Serie dans la plage temporelle sélectionnée.
+            
+            if df[df['id']==L[capteur]][variable][d:f][k+1] > Max: #comparaison des valeurs au maximum en cours.
+                i_maxi = k+1 #on stocke l'indice de la valeur maximale en cours.
+                Max = df[df['id']==L[capteur]][variable][d:f][k+1] #on actualise la valeur du maximum
+        
+        M.append(Max) #on stocke la valeur maximale du capteur qu'on est en train de parcourir.
+        I.append(i_maxi)  #on stocke également son indice
+     
+    
+    Maximum = max(M)   #Ici on s'autorise à utiliser la bibliothèque python pour calculer le maximum de la liste et éviter à faire une boucle for en plus.
+    Indice_du_maximum = I[M.index(Maximum)] #Identification de l'indice correspondant
+    
+    #on relève les caractétistiques (date précisément indexée sous le format Timestamp)de la valeur minimale pour pouvoir afficher le point avec .index:
+    A = df[df['id']==L[M.index(Maximum)]][variable][d:f].index[Indice_du_maximum]           
+    
+    df[df['id']==L[M.index(Maximum)]][variable][A._repr_base:A._repr_base].plot(label='maximum',marker='o',color='r') #affiche la valeur maximum
+    
+    plt.ylabel(variable_dico[f'{variable}'] + ' en ' + unites[f'{variable}'])
+    plt.title(f'Le maximum est de {Maximum} ' + unites[f'{variable}'])
     plt.legend()   
     plt.show()
 
