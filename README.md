@@ -130,6 +130,7 @@ def ecart_type():
     plt.show()
 ```   
 * ### d) Médiane
+On retourne la valeur médiane
 ```javascript
 def mediane():  
 
