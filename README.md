@@ -52,9 +52,9 @@ def minimum():
         
         for k in range(len(df[df['id']==L[capteur]][d:f].index)-1):#on parcourt toutes les valeurs de la Serie dans la plage temporelle sélectionnée.
             
-            if df[df['id']==L[capteur]][variable][k+1] < Min: #comparaison des valeurs au minimum en cours.
+            if df[df['id']==L[capteur]][variable][d:f][k+1] < Min: #comparaison des valeurs au minimum en cours.
                 i_mini = k+1 #on stocke l'indice de la valeur minimale en cours.
-                Min = df[df['id']==L[capteur]][variable][k+1] #on actualise la valeur du minimum
+                Min = df[df['id']==L[capteur]][variable][d:f][k+1] #on actualise la valeur du minimum
         
         M.append(Min) #on stocke la valeur minimale du capteur qu'on est en train de parcourir.
         I.append(i_mini)  #on stocke également son indice
@@ -64,7 +64,7 @@ def minimum():
     Indice_du_minimum = I[M.index(Minimum)] #Identification de l'indice correspondant
     
     #on relève les caractétistiques (date précisément indexée sous le format Timestamp)de la valeur minimale pour pouvoir afficher le point avec .index:
-    A = df[df['id']==L[M.index(Minimum)]][variable].index[Indice_du_minimum]           
+    A = df[df['id']==L[M.index(Minimum)]][variable][d:f].index[Indice_du_minimum]           
     
     df[df['id']==L[M.index(Minimum)]][variable][A._repr_base:A._repr_base].plot(label='minimum',marker='o',color='r') #affiche la valeur minimum
     
@@ -89,7 +89,9 @@ def min_max(): #on calcule les min et max journaliers
     df.loc[d:f,variable].resample('D').min().plot(label='min')
     df.loc[d:f,variable].resample('D').max().plot(label='max')
     
-    plt.title('min et max journaliers')
+    plt.ylabel(variable_dico[f'{variable}'] + ' en ' + unites[f'{variable}'])
+    plt.title('Minimum et Maximum journaliers')
+    plt.legend() 
     plt.show()
 ```
     
@@ -129,7 +131,7 @@ def moyenne():   #on calcule la moyenne journalière
     df[variable][d:f].resample('D').mean().plot(label='',ls=':')
     
     plt.ylabel(variable_dico[f'{variable}'] + ' en ' + unites[f'{variable}'])
-    plt.title('Moyenne journalière pour la variable ' + variable_dico[f'{variable}'])
+    plt.title('Moyenne journalière')
     plt.show()
 ```
 
