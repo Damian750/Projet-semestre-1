@@ -352,7 +352,10 @@ def anomalie_valeur():
 
 ## 4 Occupation des salles
 
-On crée la fonction `occupation()` en considérant que les salles sont occupées lorsque la teneur en CO2 dépasse 470 ppm. Cette information vient de la lecture du [Centre de collaboration nationale en santé environnementale au canada (CCNSE)](https://ccnse.ca/documents/practice-scenario/le-dioxyde-de-carbone-dans-lair-int%C3%A9rieur)
+On crée la fonction `occupation()` en considérant que les salles sont occupées lorsque la teneur en CO2 dépasse 470 ppm. Cette information vient de la lecture du [Centre de collaboration nationale en santé environnementale au canada (CCNSE)](https://ccnse.ca/documents/practice-scenario/le-dioxyde-de-carbone-dans-lair-int%C3%A9rieur). La teneur en CO2 ne dépassant pas 400ppm à l'air libre mais aussi pour ne pas compter les week-end où la teneur est négligeable pour notre étude, on s'intéresse ici à une occupation moyenne et haute. La fonction `occupation()` va afficher:
+ * La courbe avec les points d'occupation en rouge
+ * La liste des horaires d'occupation 
+ * Et le tableau Dataframe
 
 def occupation():
     H,J=[],[] #Deux listes pour les horaires et les journées correspondantes
