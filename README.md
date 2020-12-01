@@ -161,6 +161,7 @@ def variance():
     plt.show()
 ```
 * ### f) Indice de corrélation
+Pour l'indice de corrélarion, tout comme pour les valeurs statistiques, nous nous sommes aidé des fonctions python existantes
 ```javascript
 def correlation():
     
