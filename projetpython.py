@@ -105,6 +105,24 @@ def mediane():
     
     return (df[variable][d:f].median())
 
+def variance(): #sur le même principe que l'ecart-type
+    capteur=int(input("entrer un id du capteur:"))
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('entrer date début (exemple 2020-09):')
+    f=input('entrer date fin:')
+
+    fig, ax1 = plt.subplots(figsize=(10,4))
+    ax2 = ax1.twinx()
+    
+    ax1.plot(df[df["id"]==capteur][variable][d:f].resample('D').mean().index , df[df['id']==capteur][variable][d:f].resample('D').mean(),color='r')
+    ax1.set_ylabel(unites[f'{variable}'])
+    
+    ax2.bar(df[df["id"]==capteur][variable][d:f].resample('D').var().index , df[df['id']==capteur][variable][d:f].resample('D').var(),color='b',alpha=0.2,label='variance')
+
+    plt.title( 'Evolution de la moyenne de la variable ' + variable_dico[f'{variable}'] + " et sa variance" )
+    plt.legend()
+    plt.show()
+
 def correlation():
  
     variable1=input('entrer une variable (temp,humidity,co2,noise,lum):')
@@ -148,10 +166,7 @@ def humidex():
 
 #On crée une bibliothèque 'unites' pour pouvoir assimiler à une variable son unité de mesure puis l'afficher sur l'axe des ordonnées. Une bibliotèque 'variable_dico' pour traduire les noms des variables en français pour l'intitulé du graphique:
 
-unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%' }
-variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
 
-#La fonction 'evolution()' permet d'afficher l'evolution d'une variable en fonction du temps si on précise la variable, la plage horaire ('d' pour début et 'f' pour fin) et la liste 'L' des capteurs qu'on souhaite analyser:
 
 def evolution():
         variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
