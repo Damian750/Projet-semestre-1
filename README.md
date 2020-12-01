@@ -261,6 +261,7 @@ On a dévéloppé pour l'instant deux fonctions permettant de détecter:
 * des anomalies de valeurs en calculant leur différence avec la moyenne journalière et comparant cette différence à l'écart-type. ___```anomalie_valeur()```___
 
 ###### Anomalie_Arret()
+  * La fonction anomalie_arret() va montrer les arrêts possibles d'un capteur et montrer l'impact que cet arrêt a eu sur l'évolution des variables. Les graphiques se montrent un à un, cela prend un peu de temps.
 ```javascript
 def anomalie_arret():
     V=['temp','noise','lum','co2','humidity'] # on crée la liste des variables pour pouvoir la parcourir.
