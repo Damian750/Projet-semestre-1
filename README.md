@@ -266,11 +266,8 @@ def anomalie_arret():
     print(f'Le capteur qui présente une anomalie d arrêt est le capteur "{capteur_defiant}"')
 ```
 ###### Anomalie_Valeurs()
+  * Dans cette fonction on utilise un critère d'anomalie qui est utilisé par MeteoFrance. On demande les capteurs qu'on veut étudier, mais mieux vaut en sélectionner qu'un pour plus de rapidité et une lisibilité meilleure du graphique
 ```javascript
-import os
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 
 os.chdir('C:\\Users\\22bla\\Documents\\Damien Ecole\\Info')
 
