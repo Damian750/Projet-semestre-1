@@ -13,9 +13,6 @@ unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%'
 variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
 
 
-unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%' }
-variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
-
 def minimum():
     M=[]#on crée la liste des minimums pour chaque capteur sélectioné
     i_mini=0 #on initialise l'indice de la valeur minimale
@@ -81,10 +78,6 @@ def moyenne():   #on calcule la moyenne journalière
     plt.title('Moyenne journalière')
     plt.show()
   
-#On crée une bibliothèque 'unites' pour pouvoir assimiler à une variable son unité de mesure puis l'afficher sur l'axe des ordonnées. Une bibliotèque 'variable_dico' pour traduire les noms des variables en français pour l'intitulé du graphique:
-
-unites={ 'temp':'°C', 'noise':'dBA' , 'lum':'lux', 'co2':'ppm' , 'humidity':'%' }
-variable_dico={'temp':'température','noise':'bruit','lum':'luminosité','co2':'CO_2','humidity':'humidité relative'}
 
 def ecart_type():
     capteur=int(input("entrer un id du capteur:"))
@@ -103,39 +96,10 @@ def ecart_type():
     plt.title( 'Evolution de la moyenne de la variable ' + variable_dico[f'{variable}'] + " et son ecart-type" )
     plt.legend()
     plt.show()
-    
-  
-def max():
-    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
-    d=input('entrer date début (exemple 2020-09):')
-    f=input('entrer date fin:')
-    L=[int(el) for el in input('choix des capteurs de 1 à 6 (ex: 1 3 5):').split()]
-    for k in range(len(L)):
-        df[df['id']==L[k]][variable][d:f].plot(label=f' capteur {L[k]}')
-    plt.ylabel(unites[f'{variable}'])
-    plt.legend()               
-    A=df[variable].loc[d:f]
-    maxi=A.max()
-    plt.title(maxi)
-    plt.show()
+ 
 
-def moye():
-    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
-    d=input('entrer date début (exemple 2020-09):')
-    f=input('entrer date fin:')
-    L=[int(el) for el in input('choix des capteurs de 1 à 6 (ex: 1 3 5):').split()]
-    for k in range(len(L)):
-        df[df['id']==L[k]][variable][d:f].plot(label=f' capteur {L[k]}')
-    plt.ylabel(unites[f'{variable}'])
-    plt.legend()               
-    A=df[variable].loc[d:f]
-    moye=A.mean()
-    plt.title(moye)
-    A.plot
-    plt.show()
-    
 def correlation():
-    
+ 
     variable1=input('entrer une variable (temp,humidity,co2,noise,lum):')
     variable2=input('entrer une deuxieme variable (temp,humidity,co2,noise,lum):')
     
@@ -232,39 +196,63 @@ def anomalie_arret():
                 plt.show()
     print(f'Le capteur qui présente une anomalie d arrêt est le capteur "{capteur_defiant}"')
     
-    
+
     
 def anomalie_valeur():
     
-    capteur=int(input("entrer un id du capteur:"))
     variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('entrer date début (exemple 2020-09):')
+    f=input('entrer date fin:')  
+    L=[int(el) for el in input('choix des capteurs de 1 à 6 (ex: 1 3 5):').split()]
         
-    for k in range(len(df[df['id']==capteur].index)-1):  #on parcourt les valeurs du tableau du capteur correspondant.
         
-        D=np.abs(df[df['id']==capteur][variable][k]-df[df['id']==capteur][variable].resample('D').mean()[df[df['id']==capteur][variable].index[k]._date_repr])
-       
-        # D est la différence entre la valeur d'une variable (d'indice k) pour un capteur donné et la valeur moyenne de cette variable sur la journée.
+    for capteur in range(len(L)):  #on parcourt la liste des capteurs
         
-        s=df[df['id']==capteur][variable].std()
-        
-        # s est l'écart-type
-        # Une valeur présentant un écart à la moyenne inférieur à l'écart type est banale, compris entre une et deux fois l'écart type est modérément courante, compris entre deux et trois fois l'écart type commence a être remarquable,compris entre trois et quatre fois l'écart type est exceptionnelle, supérieur à quatre fois l'écart type est historique et très rare.
-        
-        if D>=s and D<2*s:
-                        df[df['id']==capteur][variable][k:k+1].plot(label='',lw=2,color='g',marker='o')
-        
-        if D>=2*s and D<3*s:
-                        df[df['id']==capteur][variable][k:k+1].plot(label='',lw=2,color='r',marker='o')
-        
-        if D>=3*s and D<4*s:
-                        df[df['id']==capteur][variable][k:k+1].plot(label='anomalie exceptionnelle',lw=2,color='m',marker='o')
-        
-        if D>=4*s:
-                        df[df['id']==capteur][variable][k:k+1].plot(label='anomalie rare',lw=2,color='k',marker='o')
+        anomalie_1, anomalie_2, anomalie_3, anomalie_4 = 0, 0, 0, 0   # on initialise 4 degrés d'anomalies pour chaque capteur
     
-    df[df['id']==capteur][variable].plot()
+        for k in range(len(df[df['id']==L[capteur]][d:f].index)-1):  #on parcourt les valeurs du tableau du capteur correspondant.
+            
+            D=np.abs(df[df['id']==L[capteur]][variable][d:f][k] - df[df['id']==L[capteur]][variable][d:f].resample('D').mean()[df[df['id']==L[capteur]][variable][d:f].index[k]._date_repr])
+        
+            # D est la différence entre la valeur d'une variable (d'indice k) pour un capteur donné( L[capteur] ) et la valeur moyenne de cette variable sur la journée.
+            
+            s=df[df['id']==L[capteur]][variable][d:f].std()
+            
+            # s est l'écart-type
+            # Une valeur présentant un écart à la moyenne inférieur à l'écart type est banale, compris entre une et deux fois l'écart type est modérément courante, compris entre deux et trois fois l'écart type commence a être remarquable,compris entre trois et quatre fois l'écart type est exceptionnelle, supérieur à quatre fois l'écart type est historique et très rare.
+            
+            if D>=s and D<2*s:
+                            df[df['id']==L[capteur]][variable][d:f][k:k+1].plot(label='',lw=2,color='g',marker='o')   #on affiche les points pour les anomalies détéctées grâce à l'indice k
+                            anomalie_1+=1
+            
+            if D>=2*s and D<3*s:
+                            df[df['id']==L[capteur]][variable][d:f][k:k+1].plot(label='',lw=2,color='r',marker='o')
+                            anomalie_2+=1
+            
+            if D>=3*s and D<4*s:
+                            df[df['id']==L[capteur]][variable][d:f][k:k+1].plot(label='',lw=2,color='m',marker='o')
+                            anomalie_3+=1
+            
+            if D>=4*s:
+                            df[df['id']==L[capteur]][variable][d:f][k:k+1].plot(label='',lw=2,color='k',marker='o')
+                            anomalie_4+=1
+        if anomalie_4>=1:
+            print(f'il existe au moins une anomalie extrême pour le capteur {L[capteur]}') 
+        if anomalie_3>1:
+            print(f'il existe des anomalies exceptionnelles pour le capteur {L[capteur]}')
+        if anomalie_3>1:
+            print(f'il existe des anomalies remarquables pour le capteur {L[capteur]}')
+        if anomalie_2>1:
+            print(f'il existe des anomalies courantes pour le capteur {L[capteur]}')
+        
+        df[df['id']==L[capteur]][variable][d:f].plot(label=f'capteur {L[capteur]}')
+    plt.title('vert : anomalie courante \\ rouge : anomalie courante \\  magenta : anomalie exceptionnelle \\  noire : anomalie rare ')
+    plt.figure(figsize=(20,10))
     plt.legend()
     plt.show()
+    
+    
+
     
     
 def occupation():
