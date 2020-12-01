@@ -268,14 +268,6 @@ def anomalie_arret():
 ###### Anomalie_Valeurs()
   * Dans cette fonction on utilise un critère d'anomalie qui est utilisé par MeteoFrance. On demande les capteurs qu'on veut étudier, mais mieux vaut en sélectionner qu'un pour plus de rapidité et une lisibilité meilleure du graphique
 ```javascript
-
-os.chdir('C:\\Users\\22bla\\Documents\\Damien Ecole\\Info')
-
-df=pd.read_csv('EIVP_KM.csv', sep=';', index_col='sent_at', parse_dates=True)
-
-
-
-
 def anomalie_valeur():
     
     variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
