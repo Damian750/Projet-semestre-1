@@ -109,7 +109,7 @@ def moyenne():   #on calcule la moyenne journalière
 
 
  * ### c) Ecart-type 
-  * Un FutureWarning peut être retourné sur la console, cela de dépend de la version du IDE.
+  * Un FutureWarning peut être retourné sur la console, cela dépend de la version de l'IDE.
 ```javascript 
 def ecart_type():
     capteur=int(input("entrer un id du capteur:"))
