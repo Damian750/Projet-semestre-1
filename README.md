@@ -1,5 +1,5 @@
 # Projet-semestre-1
-Présentation du projet python __Blaszczuk Damian__ et __Gasecki Nicolas__ __Groupe 23__  Le fichier python à télécharger se trouve sous le nom  `projetpython.py`
+Présentation du projet python __Blaszczuk Damian__ et __Gasecki Nicolas__ __Groupe 23__. Le fichier python à télécharger se trouve sous le nom  `projetpython.py`
 ### Sujet n°1
 --------------------------------------------------------------------------------
 ## Introduction brève du code source
