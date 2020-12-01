@@ -348,4 +348,39 @@ def anomalie_valeur():
     plt.figure(figsize=(20,10))
     plt.legend()
     plt.show()
-    ```
+```
+
+## 4 Occupation des salles
+
+On crée la fonction `occupation()` en considérant que les salles sont occupées lorsque la teneur en CO2 dépasse 470 ppm. Cette information vient de la lecture du [Centre de collaboration nationale en santé environnementale au canada (CCNSE)](https://ccnse.ca/documents/practice-scenario/le-dioxyde-de-carbone-dans-lair-int%C3%A9rieur#:~:text=En%20g%C3%A9n%C3%A9ral%2C%20dans%20le%20cas,000%20%C3%A0%201%20100%20ppm.&text=Une%20concentration%20de%20CO2,un%20risque%20pour%20la%20sant%C3%A9%20%C2%BB.)
+
+def occupation():
+    H,J=[],[] #Deux listes pour les horaires et les journées correspondantes
+    capteur=int(input('entrer un id du capteur:'))
+
+             
+    for k in range(len(df[df['id']==capteur].index)-1):
+    
+        if df[df['id']==capteur]['co2'][k]>490 :  #on considère que la salle est occupée à partir de 490ppm, pour ne pas prendre en compte les week-end.
+            
+            indice=k
+            A=df[df['id']==capteur].index[indice]
+            
+            Jour=A._date_repr    #Donnée du jour
+            Horaire=A._time_repr #Donnée de l'horaire
+            H.append(Horaire)
+            J.append(Jour)
+                
+            
+            
+            df[df['id']==capteur]['co2'][A._repr_base:A._repr_base].plot(marker='o',color='r',label='occupation moyenne de la salle')  #on parcourt toutes les données du capteur
+    
+    #On peut aussi créer un dataframe avec les horaires d'occupation
+    data = {'Periode_occupation': H , 'Jour':J}
+    Tab = pd.DataFrame(data=data)
+    Tab['Jour']=pd.to_datetime(SE.Jour) #on met le format jour en datetime
+    
+    df[df['id']==capteur]['co2'].plot(label='co2')  #on affiche la courbe co2   
+   
+    plt.show()
+    print("Les horaires d'occupation: ", H,Tab)
