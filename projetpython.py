@@ -332,20 +332,32 @@ def anomalie_valeur():
     
 
     
-    
 def occupation():
+    H,J=[],[] #Deux listes pour les horaires et les journées correspondantes
+    capteur=int(input('entrer un id du capteur:'))
     
-    capteur=int(input('choix des capteurs de 1 à 6:'))
-# df[df['id']==capteur]['co2'].plot(label='co2')
-# plt.show()
-            
     for k in range(len(df[df['id']==capteur].index)-1):
-        while df[df['id']==capteur]['co2'][k]>500:
+    
+        if df[df['id']==capteur]['co2'][k]>490 :  #on considère que la salle est occupée à partir de 490ppm, pour ne pas prendre en compte les week-end.
+            
             indice=k
             A=df[df['id']==capteur].index[indice]
-            B=df[df['id']==capteur].index[indice+1]
+            
+            Jour=A._date_repr    #Donnée du jour
+            Horaire=A._time_repr #Donnée de l'horaire
+            H.append(Horaire)
+            J.append(Jour)
                 
-            df[df['id']==capteur]['co2'][A._repr_base:B._repr_base].plot(ls=":",lw=5,color='r')   
-    df[df['id']==capteur]['co2'].plot(label='co2')       
-    plt.text('Hello World !')
+            
+            
+            df[df['id']==capteur]['co2'][A._repr_base:A._repr_base].plot(marker='o',color='r',label='occupation moyenne de la salle')  #on parcourt toutes les données du capteur
+    
+    #On peut aussi créer un dataframe avec les horaires d'occupation
+    data = {'Periode_occupation': H , 'Jour':J}
+    Tab = pd.DataFrame(data=data)
+    Tab['Jour']=pd.to_datetime(SE.Jour) #on met le format jour en datetime
+    
+    df[df['id']==capteur]['co2'].plot(label='co2')  #on affiche la courbe co2   
+   
     plt.show()
+    print("Les horaires d'occupation: ", H,Tab)
