@@ -231,7 +231,7 @@ def correlation():
     plt.title('Indice humidex au cours du temps')
     plt.show()
 ```
----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 ## II  Affichage de l'évolution des valeurs
 La fonction ```evolution()``` permet de faire apparaitre la courbe d'une variable pour des capteurs et une plage temporelle donnés. Ces informations sont inscrites par l'utilisateur lors de l'appel de la fonction. L'utilisateur a la liberté de choisir la combinaison de capteurs qu'il souhaite faire afficher.
 
@@ -251,7 +251,7 @@ def evolution():
         plt.show()
 ```
  
---------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## III  La détection des anomalies
 Après avoir observé à l'œil nu certaines anomalies sur les courbes tracées précédemment, nous avons cherché un moyen de détecter l’ensemble des anomalies présentes dans nos données. Pour ce faire, nous nous sommes penchés sur la définition d’une anomalie. Nous avons d'abord considéré qu' une valeure était considérée comme une anomalie si elle différait de plus de fois l’écart type par rapport à la moyenne. 
 
@@ -349,8 +349,8 @@ def anomalie_valeur():
     plt.legend()
     plt.show()
 ```
-
-## 4 Occupation des salles
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## IV Occupation des salles
 
 On crée la fonction `occupation()` en considérant que les salles sont occupées lorsque la teneur en CO2 dépasse 470 ppm. Cette information vient de la lecture du [Centre de collaboration nationale en santé environnementale au canada (CCNSE)](https://ccnse.ca/documents/practice-scenario/le-dioxyde-de-carbone-dans-lair-int%C3%A9rieur). La teneur en CO2 ne dépassant pas 400ppm à l'air libre mais aussi pour ne pas compter les week-end où la teneur est négligeable pour notre étude, on s'intéresse ici à une occupation moyenne et haute. La fonction `occupation()` va afficher:
  * La courbe avec les points d'occupation en rouge
@@ -387,3 +387,10 @@ def occupation():
    
     plt.show()
     print("Les horaires d'occupation: ", H,Tab)
+``` 
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+## V Commentaires
+
+La compréhension  des principes fondamentaux de la bibliothèque pandas et la prise en main de github a été longue.
+
+
