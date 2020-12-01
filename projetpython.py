@@ -97,6 +97,13 @@ def ecart_type():
     plt.legend()
     plt.show()
  
+def mediane():  
+
+    variable=input('entrer une variable (temp,humidity,co2,noise,lum):')
+    d=input('date debut:')
+    f=input('date fin:')
+    
+    return (df[variable][d:f].median())
 
 def correlation():
  
